@@ -1,18 +1,18 @@
 Описание 
 ========================
-## <charts_limits>
+### <charts_limits>
 описание структуры пределов графиков, long long int [x/y]_[down/up]_limit
-## <linear_space>
+### <linear_space>
 описание инструментов для линейного пространства
-### структура point имеет координаты, также умеет скалярно складывать и вычитать точки (+, -)
-### sacg - функция соритрурющая vector<point> по углу к центру масс
-### класс border2d олицитворяет полуплоскость относительно прямой border: const_y * y + const_x * x <= m_const
+#### структура point имеет координаты, также умеет скалярно складывать и вычитать точки (+, -)
+#### sacg - функция соритрурющая vector<point> по углу к центру масс
+#### класс border2d олицитворяет полуплоскость относительно прямой border: const_y * y + const_x * x <= m_const
 bool in_border(point) лежит ли точка в полуплоскости
 bool out_border(point) лежит ли точка вне полуплоскости
 ### класс area2d множество борьеров, которое ограничивает конкретную область, также 
 bool in_area(point) лежит ли точка в множестве,
 area2d operator&(const area2d& a_2d) const; пересечение двух областей(area2d)
-## <themewidget>
+### <themewidget>
 qt backend приложения
 ThemeWidget : QWidget
 QChart *createLineChart() const; возвращает qt chart (двух треугольников и их пересечения)
