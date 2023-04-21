@@ -30,6 +30,7 @@
 #include "themewidget.h"
 #include "ui_themewidget.h"
 
+#include <iostream>
 #include <QtCharts/QChartView>
 #include <QtCharts/QPieSeries>
 #include <QtCharts/QPieSlice>
@@ -55,8 +56,10 @@
 #include <QtWidgets/QApplication>
 #include <QtCharts/QValueAxis>
 
-#define TO_PLUS_0 0.000001
-#define CROSS_AREA 150
+#define TO_PLUS_0 0.01
+#define CROSS_AREA 250
+
+QColor intersectioncolor(31, 0, 62);
 
 ThemeWidget::ThemeWidget(QWidget *parent) :
     QWidget(parent),
@@ -72,12 +75,12 @@ ThemeWidget::ThemeWidget(QWidget *parent) :
     m_ui->lineEditT1x3->setStyleSheet(lineEditStyle);
     m_ui->lineEditT1y3->setStyleSheet(lineEditStyle);
 
-    m_ui->lineEditT1x1->setValidator( new QDoubleValidator(0, 100, 2, this) );
-    m_ui->lineEditT1y1->setValidator( new QDoubleValidator(0, 100, 2, this) );
-    m_ui->lineEditT1x2->setValidator( new QDoubleValidator(0, 100, 2, this) );
-    m_ui->lineEditT1y2->setValidator( new QDoubleValidator(0, 100, 2, this) );
-    m_ui->lineEditT1x3->setValidator( new QDoubleValidator(0, 100, 2, this) );
-    m_ui->lineEditT1y3->setValidator( new QDoubleValidator(0, 100, 2, this) );
+    m_ui->lineEditT1x1->setValidator( new QDoubleValidator(-100, 100, 2, this) );
+    m_ui->lineEditT1y1->setValidator( new QDoubleValidator(-100, 100, 2, this) );
+    m_ui->lineEditT1x2->setValidator( new QDoubleValidator(-100, 100, 2, this) );
+    m_ui->lineEditT1y2->setValidator( new QDoubleValidator(-100, 100, 2, this) );
+    m_ui->lineEditT1x3->setValidator( new QDoubleValidator(-100, 100, 2, this) );
+    m_ui->lineEditT1y3->setValidator( new QDoubleValidator(-100, 100, 2, this) );
 
     m_ui->lineEditT1x1->setText(QString("1.0"));
     m_ui->lineEditT1y1->setText(QString("1.0"));
@@ -85,12 +88,6 @@ ThemeWidget::ThemeWidget(QWidget *parent) :
     m_ui->lineEditT1y2->setText(QString("6.0"));
     m_ui->lineEditT1x3->setText(QString("7.0"));
     m_ui->lineEditT1y3->setText(QString("2.0"));
-
-    //create chart
-
-//    QChartView *chartView = new QChartView(createLineChart());
-//    m_ui->gridLayout->addWidget(chartView, 1, 2);
-//    m_charts << chartView;
 
     updateUI();
 }
@@ -146,12 +143,12 @@ QChart *ThemeWidget::createLineChart() const
             if (triangle_cross.in_area(p))
             {
                 QLineSeries *upper_series = new QLineSeries(chart);
-                upper_series->append(QPointF(x_iter, y_iter + TO_PLUS_0));
-                upper_series->append(QPointF(x_iter + TO_PLUS_0, y_iter + TO_PLUS_0));
+                upper_series->append(QPointF(x_iter, y_iter + y_diff/2));
+                upper_series->append(QPointF(x_iter + x_diff/2, y_iter + y_diff/2));
 
                 QLineSeries *lower_series = new QLineSeries(chart);
                 lower_series->append(QPointF(x_iter, y_iter));
-                lower_series->append(QPointF(x_iter + TO_PLUS_0, y_iter));
+                lower_series->append(QPointF(x_iter + x_diff/2, y_iter));
 
                 QAreaSeries *area = new QAreaSeries(upper_series, lower_series);
                 chart->addSeries(area);
@@ -180,6 +177,9 @@ void ThemeWidget::updateUI()
     m_charts << chartView;
 
     const auto charts = m_charts;
+    for (QChartView *chartView : charts) {
+        chartView->chart()->setTheme(theme);
+    }
     for (QChartView *chartView : charts) {
         chartView->chart()->setTheme(theme);
     }
