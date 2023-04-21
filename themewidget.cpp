@@ -56,6 +56,7 @@
 #include <QtCharts/QValueAxis>
 
 #define TO_PLUS_0 0.000001
+#define CROSS_AREA 150
 
 ThemeWidget::ThemeWidget(QWidget *parent) :
     QWidget(parent),
@@ -85,13 +86,11 @@ ThemeWidget::ThemeWidget(QWidget *parent) :
     m_ui->lineEditT1x3->setText(QString("7.0"));
     m_ui->lineEditT1y3->setText(QString("2.0"));
 
-    //create charts
+    //create chart
 
-    QChartView *chartView;
-
-    chartView = new QChartView(createLineChart());
-    m_ui->gridLayout->addWidget(chartView, 1, 2);
-    m_charts << chartView;
+//    QChartView *chartView = new QChartView(createLineChart());
+//    m_ui->gridLayout->addWidget(chartView, 1, 2);
+//    m_charts << chartView;
 
     updateUI();
 }
@@ -137,8 +136,8 @@ QChart *ThemeWidget::createLineChart() const
     linear_space::area2d triangle_cross(std::make_tuple(triangles[0][0], triangles[0][1], triangles[0][2]));
     triangle_cross &= linear_space::area2d(std::make_tuple(triangles[1][0], triangles[1][1], triangles[1][2]));
 
-    long double x_diff = (long double)(_limits.x_up_limit - _limits.x_down_limit) / 500;
-    long double y_diff = (long double)(_limits.y_up_limit - _limits.y_down_limit) / 500;
+    long double x_diff = (long double)(_limits.x_up_limit - _limits.x_down_limit) / CROSS_AREA;
+    long double y_diff = (long double)(_limits.y_up_limit - _limits.y_down_limit) / CROSS_AREA;
     for (long double x_iter = _limits.x_down_limit; x_iter < _limits.x_up_limit; x_iter += x_diff)
     {
         for (long double y_iter = _limits.y_down_limit; y_iter < _limits.y_up_limit; y_iter += y_diff)
@@ -175,6 +174,11 @@ QChart *ThemeWidget::createLineChart() const
 void ThemeWidget::updateUI()
 {
     QChart::ChartTheme theme = QChart::ChartThemeBlueCerulean;
+
+    QChartView *chartView = new QChartView(createLineChart());
+    m_ui->gridLayout->addWidget(chartView, 1, 2);
+    m_charts << chartView;
+
     const auto charts = m_charts;
     for (QChartView *chartView : charts) {
         chartView->chart()->setTheme(theme);
@@ -238,5 +242,41 @@ void ThemeWidget::setLimits(const pointTable& all_points, limits& _limits) const
     _limits.x_up_limit = std::ceil(max_point.x + 0.1 * x_size);
     _limits.y_down_limit = int(min_point.y - 0.1 * y_size);
     _limits.y_up_limit = std::ceil(max_point.y + 0.1 * y_size);
+}
+
+
+void ThemeWidget::on_lineEditT1x1_textEdited(const QString &arg1)
+{
+    updateUI();
+}
+
+
+void ThemeWidget::on_lineEditT1y1_textEdited(const QString &arg1)
+{
+    updateUI();
+}
+
+
+void ThemeWidget::on_lineEditT1x2_textEdited(const QString &arg1)
+{
+    updateUI();
+}
+
+
+void ThemeWidget::on_lineEditT1y2_textEdited(const QString &arg1)
+{
+    updateUI();
+}
+
+
+void ThemeWidget::on_lineEditT1x3_textEdited(const QString &arg1)
+{
+    updateUI();
+}
+
+
+void ThemeWidget::on_lineEditT1y3_textEdited(const QString &arg1)
+{
+    updateUI();
 }
 

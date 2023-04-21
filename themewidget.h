@@ -60,6 +60,18 @@ public:
 private Q_SLOTS:
     void updateUI();
 
+    void on_lineEditT1x1_textEdited(const QString &arg1);
+
+    void on_lineEditT1y1_textEdited(const QString &arg1);
+
+    void on_lineEditT1x2_textEdited(const QString &arg1);
+
+    void on_lineEditT1y2_textEdited(const QString &arg1);
+
+    void on_lineEditT1x3_textEdited(const QString &arg1);
+
+    void on_lineEditT1y3_textEdited(const QString &arg1);
+
 private:
     void connectSignals();
     QChart *createLineChart() const;
