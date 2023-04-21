@@ -100,7 +100,7 @@ ThemeWidget::~ThemeWidget()
 QChart *ThemeWidget::createLineChart() const
 {
     QChart *chart = new QChart();
-    chart->setTitle("Line chart");
+    chart->setTitle("CHART");
 
 //    QString name("Triangle ");
 //    int nameIndex = 0;

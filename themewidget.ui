@@ -475,9 +475,9 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="labelT1x1">
+      <widget class="QLabel" name="labelT1x1y1">
        <property name="text">
-        <string>x1:</string>
+        <string>(x1, y1):</string>
        </property>
       </widget>
      </item>
@@ -489,19 +489,12 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="labelT1y1">
-       <property name="text">
-        <string>y1:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QLineEdit" name="lineEditT1y1"/>
      </item>
      <item>
-      <widget class="QLabel" name="labelT1x2">
+      <widget class="QLabel" name="labelT1x2y2">
        <property name="text">
-        <string>x2:</string>
+        <string>(x2, y2):</string>
        </property>
       </widget>
      </item>
@@ -509,31 +502,17 @@
       <widget class="QLineEdit" name="lineEditT1x2"/>
      </item>
      <item>
-      <widget class="QLabel" name="labelT1y2">
-       <property name="text">
-        <string>y2:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QLineEdit" name="lineEditT1y2"/>
      </item>
      <item>
-      <widget class="QLabel" name="labelT1x3">
+      <widget class="QLabel" name="labelT1x3y3">
        <property name="text">
-        <string>x3</string>
+        <string>(x3, y3):</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLineEdit" name="lineEditT1x3"/>
-     </item>
-     <item>
-      <widget class="QLabel" name="labelT1y3">
-       <property name="text">
-        <string>y3:</string>
-       </property>
-      </widget>
      </item>
      <item>
       <widget class="QLineEdit" name="lineEditT1y3"/>
@@ -542,6 +521,9 @@
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
