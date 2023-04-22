@@ -34,6 +34,7 @@
 #include <QtCharts/QChartGlobal>
 #include "linear_space.hpp"
 #include "charts_limits.hpp"
+#include "move_node.hpp"
 
 QT_BEGIN_NAMESPACE
 class QComboBox;
