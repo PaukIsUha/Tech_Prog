@@ -79,7 +79,7 @@ linear_space::point& linear_space::point::operator+=(const point& p)
     return *this;
 }
 
-linear_space::point linear_space::point::operator+(const point& p)
+linear_space::point linear_space::point::operator+(const point& p) const
 {
     point summary = *this;
     summary += p;
@@ -93,14 +93,14 @@ linear_space::point& linear_space::point::operator-=(const point& p)
     return *this;
 }
 
-linear_space::point linear_space::point::operator-(const point& p)
+linear_space::point linear_space::point::operator-(const point& p) const
 {
     point summary = *this;
     summary -= p;
     return summary;
 }
 
-void linear_space::sort_by_angle_to_center_of_gravity(std::vector<point>& points)
+linear_space::point linear_space::sort_by_angle_to_center_of_gravity(std::vector<point>& points)
 {
     point cof = center_of_gravity(points);
     for (auto& _point : points)
@@ -144,7 +144,7 @@ bool linear_space::comparator_by_angle(const point& p1, const point& p2)
 
     if (quartal1 != quartal2)
         return quartal1 < quartal2;
-    if (quartal1 == 4 || quartal2 == 1)
+    if (_sin1 >= 0)
         return _cos1 < _cos2;
     else
         return _cos1 >= _cos2;
@@ -170,7 +170,20 @@ linear_space::point linear_space::center_of_gravity(const std::vector<point>& po
     point cof = { 0, 0 };
     for (const auto& _point : points)
         cof += _point;
-    cof.x /= points.size();
-    cof.y /= points.size();
+    cof /= points.size();
     return cof;
+}
+
+linear_space::point& linear_space::point::operator/=(const real& value)
+{
+    x /= value;
+    y /= value;
+    return *this;
+}
+
+linear_space::point linear_space::point::operator/(const real& value) const
+{
+    point copy = *this;
+    copy /= value;
+    return copy;
 }
