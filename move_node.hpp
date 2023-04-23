@@ -14,20 +14,21 @@ class QGraphicsSceneMouseEvent;
 
 namespace move_node
 {
-    class moveNode : public QGraphicsItem
+    class moveNode : public QObject, public QGraphicsItem
     {
     public:
-        moveNode(QGraphicsWidget *graphWidget);
-
+        moveNode(QPointF* rect = nullptr, QWidget *_widget = nullptr);
+    signals:
+    private:
         QRectF boundingRect() const;
-        QPainterPath shape() const;
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    protected:
+        void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
         void mousePressEvent(QGraphicsSceneMouseEvent *event);
         void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-    private:
-        QPointF newPos;
-        QGraphicsWidget *graph;
+
+
+        QWidget *__widget__;
+        QPointF *position;
     };
 }
 
