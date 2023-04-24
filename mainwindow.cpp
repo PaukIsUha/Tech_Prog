@@ -35,20 +35,63 @@ MainWindow::MainWindow(QWidget *parent)
 
     scene->setBackgroundBrush(m_gradient);
 
-    move_node::moveNode *item = new move_node::moveNode();        // Создаём графический элемента
-    item->setPos(100, 250);
+    dataNodes pps;
+    // TRIANGLE I
+    pps.push_back(std::vector<viewItem::moveNode *>());
 
-    move_node::moveNode *item2 = new move_node::moveNode();        // Создаём графический элемента
-    item2->setPos(90, 200);
+    viewItem::moveNode *T1node1 = new viewItem::moveNode();        // Создаём узел (Треугольник 1, точка 1)
+    T1node1->setPos(100, 400);
+    viewItem::moveNode *T1node2 = new viewItem::moveNode();        // Создаём узел (Треугольник 1, точка 2)
+    T1node2->setPos(400, 350);
+    viewItem::moveNode *T1node3 = new viewItem::moveNode();        // Создаём узел (Треугольник 1, точка 3)
+    T1node3->setPos(250, 200);
 
-    move_node::moveNode *item3 = new move_node::moveNode();        // Создаём графический элемента
-    item3->setPos(20, 70);
+    pps[0].push_back(T1node1);
+    pps[0].push_back(T1node2);
+    pps[0].push_back(T1node3);
 
-    scene->addItem(item);   // Добавляем элемент на графическую сцену
-    scene->addItem(item2);   // Добавляем элемент на графическую сцену
-    scene->addItem(item3);   // Добавляем элемент на графическую сцену
+    scene->addItem(T1node1);   // Добавляем элемент на графическую сцену
+    scene->addItem(T1node2);   // Добавляем элемент на графическую сцену
+    scene->addItem(T1node3);   // Добавляем элемент на графическую сцену
 
-    //repaint();
+    viewItem::edge *T1edge1 = new viewItem::edge(T1node1, T1node2); // Создаём сторону между T1node1 T1node2
+    viewItem::edge *T1edge2 = new viewItem::edge(T1node2, T1node3); // Создаём сторону между T1node2 T1node3
+    viewItem::edge *T1edge3 = new viewItem::edge(T1node1, T1node3); // Создаём сторону между T1node1 T1node3
+    scene->addItem(T1edge1);
+    scene->addItem(T1edge2);
+    scene->addItem(T1edge3);
+
+    // TRIANGLE II
+    pps.push_back(std::vector<viewItem::moveNode *>());
+
+    viewItem::moveNode *T2node1 = new viewItem::moveNode();        // Создаём узел (Треугольник 2, точка 1)
+    T2node1->setPos(175, 350);
+    viewItem::moveNode *T2node2 = new viewItem::moveNode();        // Создаём узел (Треугольник 2, точка 2)
+    T2node2->setPos(500, 400);
+    viewItem::moveNode *T2node3 = new viewItem::moveNode();        // Создаём узел (Треугольник 2, точка 3)
+    T2node3->setPos(500, 190);
+
+    pps[1].push_back(T2node1);
+    pps[1].push_back(T2node2);
+    pps[1].push_back(T2node3);
+
+    scene->addItem(T2node1);   // Добавляем элемент на графическую сцену
+    scene->addItem(T2node2);   // Добавляем элемент на графическую сцену
+    scene->addItem(T2node3);   // Добавляем элемент на графическую сцену
+
+    viewItem::edge *T2edge1 = new viewItem::edge(T2node1, T2node2); // Создаём сторону между T1node1 T1node2
+    viewItem::edge *T2edge2 = new viewItem::edge(T2node2, T2node3); // Создаём сторону между T1node2 T1node3
+    viewItem::edge *T2edge3 = new viewItem::edge(T2node1, T2node3); // Создаём сторону между T1node1 T1node3
+    QColor clr_T2_edges(205, 92, 92, 255);
+    T2edge1->setColor(clr_T2_edges);
+    T2edge2->setColor(clr_T2_edges);
+    T2edge3->setColor(clr_T2_edges);
+    scene->addItem(T2edge1);
+    scene->addItem(T2edge2);
+    scene->addItem(T2edge3);
+
+    viewItem::area2d_view *intersection = new viewItem::area2d_view(pps, width(), height());
+    scene->addItem(intersection);
 }
 
 MainWindow::~MainWindow()
