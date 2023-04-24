@@ -7,17 +7,18 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QStyleOption>
+#define POINT_SIZE 20
 
 class Edge;
 class GraphWidget;
 class QGraphicsSceneMouseEvent;
 
-namespace move_node
+namespace viewItem
 {
     class moveNode : public QObject, public QGraphicsItem
     {
     public:
-        moveNode(QPointF* rect = nullptr, QWidget *_widget = nullptr);
+        moveNode();
     signals:
     private:
         QRectF boundingRect() const;
@@ -25,10 +26,6 @@ namespace move_node
         void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
         void mousePressEvent(QGraphicsSceneMouseEvent *event);
         void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
-
-
-        QWidget *__widget__;
-        QPointF *position;
     };
 }
 

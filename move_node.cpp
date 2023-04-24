@@ -3,13 +3,7 @@
 #include <QDebug>
 #include <iostream>
 
-enum {
-    POINT_SIZE = 20,
-};
-
-move_node::moveNode::moveNode(QPointF* rect, QWidget *_widget)
-    : __widget__(_widget),
-      position(rect)
+viewItem::moveNode::moveNode()
 {
     setFlag(ItemIsMovable);
     setFlag(ItemSendsGeometryChanges);
@@ -18,12 +12,12 @@ move_node::moveNode::moveNode(QPointF* rect, QWidget *_widget)
     //position = new QPointF();
 }
 
-QRectF move_node::moveNode::boundingRect() const
+QRectF viewItem::moveNode::boundingRect() const
 {
     return QRectF(-POINT_SIZE / 2, -POINT_SIZE / 2, POINT_SIZE, POINT_SIZE);
 }
 
-void move_node::moveNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void viewItem::moveNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->setPen(Qt::lightGray);
     QLinearGradient m_gradient(-POINT_SIZE / 2, -POINT_SIZE / 2, POINT_SIZE, POINT_SIZE);
@@ -31,11 +25,12 @@ void move_node::moveNode::paint(QPainter *painter, const QStyleOptionGraphicsIte
     m_gradient.setColorAt(1.0, Qt::blue);
     painter->setBrush(m_gradient);
     painter->drawEllipse(-POINT_SIZE / 2, -POINT_SIZE / 2, POINT_SIZE, POINT_SIZE);
+
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
 
-void move_node::moveNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
+void viewItem::moveNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     /* Устанавливаем позицию графического элемента
      * в графической сцене, транслировав координаты
@@ -47,22 +42,22 @@ void move_node::moveNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     this->setPos(mapToScene(event->pos()));
 }
 
-void move_node::moveNode::mousePressEvent(QGraphicsSceneMouseEvent *event)
+void viewItem::moveNode::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     /* При нажатии мышью на графический элемент
      * заменяем курсор на руку, которая держит этот элемента
      * */
-    this->setScale(2);
+    //this->setScale(2);
     this->setCursor(QCursor(Qt::ClosedHandCursor));
     Q_UNUSED(event);
 }
 
-void move_node::moveNode::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+void viewItem::moveNode::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     /* При отпускании мышью элемента
      * заменяем на обычный курсор стрелку
      * */
-    this->setScale(1);
+    //this->setScale(1);
     this->setCursor(QCursor(Qt::ArrowCursor));
     Q_UNUSED(event);
 }

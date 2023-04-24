@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QPainter>
-#include "move_node.hpp"
+#include <area2d_view.hpp>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
