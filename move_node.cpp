@@ -47,7 +47,6 @@ void viewItem::moveNode::mousePressEvent(QGraphicsSceneMouseEvent *event)
     /* При нажатии мышью на графический элемент
      * заменяем курсор на руку, которая держит этот элемента
      * */
-    //this->setScale(2);
     this->setCursor(QCursor(Qt::ClosedHandCursor));
     Q_UNUSED(event);
 }
@@ -57,7 +56,6 @@ void viewItem::moveNode::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     /* При отпускании мышью элемента
      * заменяем на обычный курсор стрелку
      * */
-    //this->setScale(1);
     this->setCursor(QCursor(Qt::ArrowCursor));
     Q_UNUSED(event);
 }

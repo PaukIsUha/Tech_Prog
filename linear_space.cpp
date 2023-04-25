@@ -51,7 +51,7 @@ linear_space::area2d& linear_space::area2d::operator&=(const area2d& a_2d)
     return *this;
 }
 
-const bool linear_space::border2d::in_border(const point& p) const
+bool linear_space::border2d::in_border(const point& p) const
 {
     if (leq)
         return const_x * p.x + const_y * p.y <= m_const;
@@ -59,12 +59,12 @@ const bool linear_space::border2d::in_border(const point& p) const
         return const_x * p.x + const_y * p.y >= m_const;
 }
 
-const bool linear_space::border2d::out_border(const point& p) const
+bool linear_space::border2d::out_border(const point& p) const
 {
     return !in_border(p);
 }
 
-const bool linear_space::area2d::in_area(const point& p) const
+bool linear_space::area2d::in_area(const point& p) const
 {
     for (const auto& border : borders)
         if (border.out_border(p))
@@ -108,6 +108,7 @@ linear_space::point linear_space::sort_by_angle_to_center_of_gravity(std::vector
     std::sort(points.begin(), points.end(), comparator_by_angle);
     for (auto& _point : points)
         _point += cof;
+    return cof;
 }
 
 bool linear_space::comparator_by_angle(const point& p1, const point& p2)
