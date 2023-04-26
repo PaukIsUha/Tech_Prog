@@ -100,7 +100,7 @@ linear_space::point linear_space::point::operator-(const point& p) const
     return summary;
 }
 
-void linear_space::sort_by_angle_to_center_of_gravity(std::vector<point>& points)
+linear_space::point linear_space::sort_by_angle_to_center_of_gravity(std::vector<point>& points)
 {
     point cof = center_of_gravity(points);
     for (auto& _point : points)

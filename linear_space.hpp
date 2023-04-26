@@ -29,7 +29,7 @@ namespace linear_space
     };
 
     point toLSpoint(const QPointF& qt_point);
-    void sort_by_angle_to_center_of_gravity(std::vector<point>& points);
+    point sort_by_angle_to_center_of_gravity(std::vector<point>& points);
     #define sacg(p) sort_by_angle_to_center_of_gravity(p)
     point center_of_gravity(const std::vector<point>& points);
     bool comparator_by_angle(const point& p1, const point& p2);

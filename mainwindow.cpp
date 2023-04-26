@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     auto _width_ = geometry().width();
     auto _height_ = geometry().height();
 
-    //    scene->setSceneRect(10, 10, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
+    scene->setSceneRect(0, 0, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
 
     QRect rcontent = ui->graphicsView->contentsRect();
 //    ui->graphicsView->setSceneRect(0, 0, rcontent.width(), rcontent.height());
@@ -105,9 +105,9 @@ MainWindow::MainWindow(QWidget *parent)
     viewItem::area2d_view *intersection = new viewItem::area2d_view(pps);
     intersection->setScene(scene);
     scene->addItem(intersection);
-    //    qDebug() << "RESIZE";
-    //    ui->graphicsView->setSceneRect(100, 100, rcontent.width(), rcontent.height()-100);
-    ui->graphicsView->setScene(scene);  // Устанавливаем графическую сцену в graphicsView
+//    //    qDebug() << "RESIZE";
+//    //    ui->graphicsView->setSceneRect(100, 100, rcontent.width(), rcontent.height()-100);
+//    ui->graphicsView->setScene(scene);  // Устанавливаем графическую сцену в graphicsView
 
 
 }
