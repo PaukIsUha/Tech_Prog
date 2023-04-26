@@ -17,6 +17,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    
 protected:
     void paintEvent(QPaintEvent *event);
     void resizeEvent(QResizeEvent *event);
@@ -29,7 +30,6 @@ public slots:
 private:
 
     Ui::MainWindow *ui;
-//    GraphicsView *graphicsView;
     GraphicsScene *scene;
 };
 #endif // MAINWINDOW_H

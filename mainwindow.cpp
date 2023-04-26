@@ -26,11 +26,10 @@ MainWindow::MainWindow(QWidget *parent)
     auto _height_ = geometry().height();
 
     //    scene->setSceneRect(10, 10, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
-    scene->setSceneRect(0, 0, _width_, _height_); // Устанавливаем размер сцены
+
     QRect rcontent = ui->graphicsView->contentsRect();
 //    ui->graphicsView->setSceneRect(0, 0, rcontent.width(), rcontent.height());
 
-    //ui->graphicsView->resize(_width_, _height_);  // Устанавливаем размер graphicsView
     ui->graphicsView->setScene(scene);  // Устанавливаем графическую сцену в graphicsView
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);    // Настраиваем рендер
     ui->graphicsView->setCacheMode(QGraphicsView::CacheBackground); // Кэш фона
@@ -117,7 +116,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 void MainWindow::paintEvent(QPaintEvent *event)
 {

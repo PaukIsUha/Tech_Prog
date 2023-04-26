@@ -51,8 +51,8 @@ namespace linear_space
         border2d(const border2d& _b_2d) = default;
         border2d(std::tuple<point, point> line, const point& area_cond);	// init border from line to side of area_cond
 
-        const bool in_border(const point& p) const;	// point inside border
-        const bool out_border(const point& p) const;	// point outside border - true
+        bool in_border(const point& p) const;	// point inside border
+        bool out_border(const point& p) const;	// point outside border - true
 
         border2d& operator=(const border2d& _b_2d) = default;
         border2d& operator=(border2d&& _b_2d) = default;
@@ -70,7 +70,7 @@ namespace linear_space
         area2d(const area2d& a_2d) = default;
         area2d(std::tuple<point, point, point> triangle);	// triangle area
 
-        const bool in_area(const point& p) const;	// point inside area
+        bool in_area(const point& p) const;	// point inside area
 
         area2d operator&(const area2d& a_2d) const;	// intersection of 2 areas
         area2d& operator&=(const area2d& a_2d);
