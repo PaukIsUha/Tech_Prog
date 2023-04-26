@@ -1,39 +1,52 @@
 #include "mainwindow.h"
+#include "Geli.hpp"
+#include "GraphicsScene.h"
 #include "ui_mainwindow.h"
 #include <QtGui>
-
+#include <QDebug>
+#include <QApplication>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
+    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR","1");
     ui->setupUi(this);
 
-    scene = new QGraphicsScene(this);   // Инициализируем графическую сцену
-    scene->setItemIndexMethod(QGraphicsScene::NoIndex); // настраиваем индексацию элементов
+
+    scene = new GraphicsScene();   // Инициализируем графическую сцену
+    scene->setItemIndexMethod(GraphicsScene::NoIndex); // настраиваем индексацию элементов
+
+    connect(this, &MainWindow::resized, scene, &GraphicsScene::ScreenResize);
+
+    viewItem::moveNode::setScene(scene);
 
     auto _width_ = geometry().width();
     auto _height_ = geometry().height();
 
-//    scene->setSceneRect(0, 0, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
+    //    scene->setSceneRect(10, 10, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
     scene->setSceneRect(0, 0, _width_, _height_); // Устанавливаем размер сцены
     QRect rcontent = ui->graphicsView->contentsRect();
-    ui->graphicsView->setSceneRect(0, 0, rcontent.width(), rcontent.height());
+//    ui->graphicsView->setSceneRect(0, 0, rcontent.width(), rcontent.height());
 
     //ui->graphicsView->resize(_width_, _height_);  // Устанавливаем размер graphicsView
     ui->graphicsView->setScene(scene);  // Устанавливаем графическую сцену в graphicsView
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);    // Настраиваем рендер
     ui->graphicsView->setCacheMode(QGraphicsView::CacheBackground); // Кэш фона
     ui->graphicsView->setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+    ui->graphicsView->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    setCentralWidget(ui->graphicsView);
+//    ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
-    QColor start_color(70, 130, 180, 255);
-    QColor end_color(39, 163, 144, 255);
-    QLinearGradient m_gradient(0, 0, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
+    //    QColor start_color(70, 130, 180, 255);
+    //    QColor end_color(39, 163, 144, 255);
+    //    QLinearGradient m_gradient(0, 0, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
 
-    m_gradient.setColorAt(0.0, start_color);
-    m_gradient.setColorAt(1.0, end_color);
+    //    m_gradient.setColorAt(0.0, start_color);
+    //    m_gradient.setColorAt(1.0, end_color);
 
-    scene->setBackgroundBrush(m_gradient);
+    //    scene->setBackgroundBrush(m_gradient);
 
     dataNodes pps;
     // TRIANGLE I
@@ -90,8 +103,14 @@ MainWindow::MainWindow(QWidget *parent)
     scene->addItem(T2edge2);
     scene->addItem(T2edge3);
 
-    viewItem::area2d_view *intersection = new viewItem::area2d_view(pps, width(), height());
+    viewItem::area2d_view *intersection = new viewItem::area2d_view(pps);
+    intersection->setScene(scene);
     scene->addItem(intersection);
+    //    qDebug() << "RESIZE";
+    //    ui->graphicsView->setSceneRect(100, 100, rcontent.width(), rcontent.height()-100);
+    ui->graphicsView->setScene(scene);  // Устанавливаем графическую сцену в graphicsView
+
+
 }
 
 MainWindow::~MainWindow()
@@ -127,5 +146,25 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
 //    move_node::moveNode* node = new move_node::moveNode(this);
 //    node->setPos(50, 50);
-//    node->paint(&painter);
+    //    node->paint(&painter);
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event) {
+    QMainWindow::resizeEvent(event);
+    emit MainWindow::resized(event->size().width(), event->size().height());
+//    int width = event->size().width();
+//    int height = event->size().height();
+//    qDebug() << "Width: " << width << ", Height: " << height;
+}
+
+//void QGraphicsView::resizeEvent(QResizeEvent* event)
+//{
+//    QGraphicsView::resizeEvent(event); // вызываем базовую реализацию
+//    this->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
+//    this->update(); // перерисовываем виджет
+//}
+
+void MainWindow::ScreenResize(int width, int height)
+{
+    qDebug() << "Width: " << width << ", Height: " << height;
 }

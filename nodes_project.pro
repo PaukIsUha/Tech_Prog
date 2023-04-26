@@ -9,6 +9,8 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Geli.cpp \
+    GraphicsScene.cpp \
     area2d_view.cpp \
     edge.cpp \
     linear_space.cpp \
@@ -17,6 +19,8 @@ SOURCES += \
     move_node.cpp
 
 HEADERS += \
+    Geli.hpp \
+    GraphicsScene.h \
     area2d_view.hpp \
     edge.hpp \
     linear_space.hpp \

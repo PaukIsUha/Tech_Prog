@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPainter>
 #include <area2d_view.hpp>
+#include "GraphicsScene.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,10 +19,17 @@ public:
     ~MainWindow();
 protected:
     void paintEvent(QPaintEvent *event);
+    void resizeEvent(QResizeEvent *event);
+signals:
+    void resized(int width, int height);
 
+public slots:
+    void ScreenResize(int width, int height);
 
 private:
+
     Ui::MainWindow *ui;
-    QGraphicsScene *scene;
+//    GraphicsView *graphicsView;
+    GraphicsScene *scene;
 };
 #endif // MAINWINDOW_H

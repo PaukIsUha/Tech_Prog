@@ -19,12 +19,25 @@ namespace viewItem
     {
     public:
         moveNode();
-    signals:
+
+        moveNode(const moveNode& new_node);
+
+        static void setScene(QGraphicsScene *other_scene);
+
+        static QGraphicsScene* getScene();
+
     private:
+
+        static QGraphicsScene *scene;
+
         QRectF boundingRect() const;
+
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
         void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+
         void mousePressEvent(QGraphicsSceneMouseEvent *event);
+
         void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
     };
 }
