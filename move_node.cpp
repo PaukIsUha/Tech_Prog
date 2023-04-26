@@ -16,7 +16,7 @@ QGraphicsScene* viewItem::moveNode::getScene() {
     return scene;
 }
 
-viewItem::moveNode::moveNode(const moveNode& new_node) {
+viewItem::moveNode::moveNode(const moveNode& new_node) : viewItem::moveNode::moveNode() {
     this->scene = new_node.scene;
 }
 
