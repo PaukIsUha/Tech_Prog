@@ -26,10 +26,7 @@ void viewItem::area2d_view::paint(QPainter *painter, const QStyleOptionGraphicsI
 {
     prepareGeometryChange();
 // Draw the line itself
-    QLinearGradient m_gradient(0, 0, this->scene->width(), this->scene->height());
-    m_gradient.setColorAt(0.0, Qt::black);
-    m_gradient.setColorAt(1.0, Qt::white);
-    painter->setPen(QPen(m_gradient, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+    painter->setPen(QPen(getGradient(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
     auto _area = calcArea();
     for (size_t X = 0; X < this->scene->width(); ++X)
     {
@@ -42,7 +39,6 @@ void viewItem::area2d_view::paint(QPainter *painter, const QStyleOptionGraphicsI
             }
         }
     }
-
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
@@ -69,4 +65,12 @@ linear_space::area2d viewItem::area2d_view::calcArea() const
     linear_space::area2d area2(std::make_tuple(dataPoints[1][0], dataPoints[1][1], dataPoints[1][2]));
 
     return area1 & area2;
+}
+
+QLinearGradient viewItem::area2d_view::getGradient() const
+{
+    QLinearGradient m_gradient(0, 0, this->scene->width(), this->scene->height());
+    m_gradient.setColorAt(0.0, Qt::black);
+    m_gradient.setColorAt(1.0, Qt::white);
+    return m_gradient;
 }

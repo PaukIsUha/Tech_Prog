@@ -21,14 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this, &MainWindow::resized, scene, &GraphicsScene::ScreenResize);
 
     viewItem::moveNode::setScene(scene);
-
-    auto _width_ = geometry().width();
-    auto _height_ = geometry().height();
-
     scene->setSceneRect(0, 0, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
-
-    QRect rcontent = ui->graphicsView->contentsRect();
-//    ui->graphicsView->setSceneRect(0, 0, rcontent.width(), rcontent.height());
 
     ui->graphicsView->setScene(scene);  // Устанавливаем графическую сцену в graphicsView
     ui->graphicsView->setRenderHint(QPainter::Antialiasing);    // Настраиваем рендер
@@ -38,16 +31,9 @@ MainWindow::MainWindow(QWidget *parent)
     setCentralWidget(ui->graphicsView);
 //    ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
-    //    QColor start_color(70, 130, 180, 255);
-    //    QColor end_color(39, 163, 144, 255);
-    //    QLinearGradient m_gradient(0, 0, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
-
-    //    m_gradient.setColorAt(0.0, start_color);
-    //    m_gradient.setColorAt(1.0, end_color);
-
-    //    scene->setBackgroundBrush(m_gradient);
-
+    scene->setBackgroundBrush(getGradient());
     dataNodes pps;
+
     // TRIANGLE I
     pps.push_back(std::vector<viewItem::moveNode *>());
 
@@ -105,11 +91,6 @@ MainWindow::MainWindow(QWidget *parent)
     viewItem::area2d_view *intersection = new viewItem::area2d_view(pps);
     intersection->setScene(scene);
     scene->addItem(intersection);
-//    //    qDebug() << "RESIZE";
-//    //    ui->graphicsView->setSceneRect(100, 100, rcontent.width(), rcontent.height()-100);
-//    ui->graphicsView->setScene(scene);  // Устанавливаем графическую сцену в graphicsView
-
-
 }
 
 MainWindow::~MainWindow()
@@ -145,24 +126,24 @@ void MainWindow::paintEvent(QPaintEvent *event)
 //    move_node::moveNode* node = new move_node::moveNode(this);
 //    node->setPos(50, 50);
     //    node->paint(&painter);
+    Q_UNUSED(event);
 }
 
-void MainWindow::resizeEvent(QResizeEvent *event) {
+void MainWindow::resizeEvent(QResizeEvent *event)
+{
     QMainWindow::resizeEvent(event);
     emit MainWindow::resized(event->size().width(), event->size().height());
-//    int width = event->size().width();
-//    int height = event->size().height();
-//    qDebug() << "Width: " << width << ", Height: " << height;
 }
-
-//void QGraphicsView::resizeEvent(QResizeEvent* event)
-//{
-//    QGraphicsView::resizeEvent(event); // вызываем базовую реализацию
-//    this->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
-//    this->update(); // перерисовываем виджет
-//}
 
 void MainWindow::ScreenResize(int width, int height)
 {
     qDebug() << "Width: " << width << ", Height: " << height;
+}
+
+QLinearGradient MainWindow::getGradient() const
+{
+    QLinearGradient m_gradient(0, 0, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
+    m_gradient.setColorAt(0.0, DARK_SIDE_BACKGROUND);
+    m_gradient.setColorAt(1.0, LIGHT_SIDE_BACKGROUND);
+    return m_gradient;
 }

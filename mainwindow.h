@@ -10,6 +10,9 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
+#define DARK_SIDE_BACKGROUND QColor(70, 130, 180, 255)
+#define LIGHT_SIDE_BACKGROUND QColor(39, 163, 144, 255)
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -28,6 +31,7 @@ public slots:
     void ScreenResize(int width, int height);
 
 private:
+    QLinearGradient getGradient() const;
 
     Ui::MainWindow *ui;
     GraphicsScene *scene;
