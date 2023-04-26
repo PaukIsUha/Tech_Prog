@@ -78,6 +78,8 @@ namespace linear_space
         area2d& operator=(const area2d& a_2d) = default;
         area2d& operator=(area2d&& a_2d) = default;
 
+        void clear();
+
         ~area2d() = default;
     };
 }

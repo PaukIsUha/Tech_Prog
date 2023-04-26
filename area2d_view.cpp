@@ -61,10 +61,17 @@ linear_space::area2d viewItem::area2d_view::calcArea() const
             dataPoints[i][j] = linear_space::toLSpoint(figures[i][j]->pos());
         }
     }
-    linear_space::area2d area1(std::make_tuple(dataPoints[0][0], dataPoints[0][1], dataPoints[0][2]));
-    linear_space::area2d area2(std::make_tuple(dataPoints[1][0], dataPoints[1][1], dataPoints[1][2]));
-
-    return area1 & area2;
+    linear_space::area2d interscetion;
+    try
+    {
+        linear_space::area2d area1(std::make_tuple(dataPoints[0][0], dataPoints[0][1], dataPoints[0][2]));
+        linear_space::area2d area2(std::make_tuple(dataPoints[1][0], dataPoints[1][1], dataPoints[1][2]));
+        interscetion = area1 & area2;
+    }  catch (std::logic_error)
+    {
+        interscetion.clear();
+    }
+    return interscetion;
 }
 
 QLinearGradient viewItem::area2d_view::getGradient() const
