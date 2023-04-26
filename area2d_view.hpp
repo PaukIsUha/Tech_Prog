@@ -10,17 +10,29 @@ namespace viewItem
     class area2d_view: public QObject, public QGraphicsItem
     {
     public:
-        area2d_view(const dataNodes& _figures, size_t width, size_t height);
+        area2d_view(const dataNodes& _figures);
+
+        static void setScene(QGraphicsScene *other_scene);
+
+        static QGraphicsScene* getScene();
+
     signals:
+
     private:
+
+        static QGraphicsScene *scene;
+
         QRectF boundingRect() const;
+
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
     private:
+
         linear_space::area2d calcArea() const;
+
     private:
+
         dataNodes figures;
-        size_t __width__;
-        size_t __height__;
     };
 }
 

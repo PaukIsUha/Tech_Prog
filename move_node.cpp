@@ -1,7 +1,24 @@
 #include "move_node.hpp"
+#include "ui_mainwindow.h"
+#include "mainwindow.h"
 #include <QCoreApplication>
 #include <QDebug>
+#include <QtGui>
 #include <iostream>
+
+QGraphicsScene* viewItem::moveNode::scene = nullptr;
+
+void viewItem::moveNode::setScene(QGraphicsScene *other_scene) {
+    scene = other_scene;
+}
+
+QGraphicsScene* viewItem::moveNode::getScene() {
+    return scene;
+}
+
+viewItem::moveNode::moveNode(const moveNode& new_node) : viewItem::moveNode::moveNode() {
+    this->scene = new_node.scene;
+}
 
 viewItem::moveNode::moveNode()
 {
@@ -37,9 +54,21 @@ void viewItem::moveNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
      * курсора внутри графического элемента
      * в координатную систему графической сцены
      * */
-//    this->position = QRectF(event->pos(), position.size());
+    QPointF cur_pnt = mapToScene(event->pos());
+    if(cur_pnt.rx() < 0.0) {
+        cur_pnt.setX(0);
+    }
+    if (cur_pnt.ry() < 3.0) {
+        cur_pnt.setY(3);
+    }
+    if(cur_pnt.rx() > this->scene->width() - 0.0) {
+        cur_pnt.setX(this->scene->width() - 0.0);
+    }
+    if (cur_pnt.ry() > this->scene->height() - 3.0) {
+        cur_pnt.setY(this->scene->height() - 3.0);
+    }
 
-    this->setPos(mapToScene(event->pos()));
+    this->setPos(cur_pnt);
 }
 
 void viewItem::moveNode::mousePressEvent(QGraphicsSceneMouseEvent *event)

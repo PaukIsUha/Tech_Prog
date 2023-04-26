@@ -1,30 +1,39 @@
 #include "area2d_view.hpp"
 
-viewItem::area2d_view::area2d_view(const dataNodes& _figures, size_t width, size_t height)
-    : figures(_figures),
-      __width__(width),
-      __height__(height)
+
+QGraphicsScene* viewItem::area2d_view::scene = nullptr;
+
+void viewItem::area2d_view::setScene(QGraphicsScene *other_scene) {
+    scene = other_scene;
+}
+
+QGraphicsScene* viewItem::area2d_view::getScene() {
+    return scene;
+}
+
+viewItem::area2d_view::area2d_view(const dataNodes& _figures)
+    : figures(_figures)
 {
     setZValue(-3);
 }
 
 QRectF viewItem::area2d_view::boundingRect() const
 {
-    return QRectF(0, 0, 600, 800);
+    return QRectF(0, 0, this->scene->width(), this->scene->height());
 }
 
 void viewItem::area2d_view::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     prepareGeometryChange();
 // Draw the line itself
-    QLinearGradient m_gradient(0, 0, 600, 800);
+    QLinearGradient m_gradient(0, 0, this->scene->width(), this->scene->height());
     m_gradient.setColorAt(0.0, Qt::black);
     m_gradient.setColorAt(1.0, Qt::white);
     painter->setPen(QPen(m_gradient, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
     auto _area = calcArea();
-    for (size_t X = 0; X < __width__; ++X)
+    for (size_t X = 0; X < this->scene->width(); ++X)
     {
-        for (size_t Y = 0; Y < __height__; ++Y)
+        for (size_t Y = 0; Y < this->scene->height(); ++Y)
         {
             linear_space::point p = {real(X), real(Y)};
             if (_area.in_area(p))
