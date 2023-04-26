@@ -10,8 +10,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-#define DARK_SIDE_BACKGROUND QColor(70, 130, 180, 255)
-#define LIGHT_SIDE_BACKGROUND QColor(39, 163, 144, 255)
+#define DARK_SIDE_BACKGROUND QColor(0, 17, 77, 255)
+#define LIGHT_SIDE_BACKGROUND QColor(0, 61, 55, 255)
 
 class MainWindow : public QMainWindow
 {

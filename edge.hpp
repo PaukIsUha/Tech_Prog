@@ -2,6 +2,8 @@
 #define EDGE_HPP
 #include <move_node.hpp>
 
+#define EDGE_COLOR_1 QColor(250, 150, 150, 255)
+
 namespace viewItem
 {
     class edge : public QObject, public QGraphicsItem
