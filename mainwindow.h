@@ -25,11 +25,9 @@ signals:
 
 public slots:
     void ScreenResize(int width, int height);
-
 private:
-
     Ui::MainWindow *ui;
-//    GraphicsView *graphicsView;
     GraphicsScene *scene;
 };
+
 #endif // MAINWINDOW_H
