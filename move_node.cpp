@@ -36,12 +36,12 @@ QRectF viewItem::moveNode::boundingRect() const
 
 void viewItem::moveNode::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setPen(Qt::lightGray);
-    QLinearGradient m_gradient(-POINT_SIZE / 2, -POINT_SIZE / 2, POINT_SIZE, POINT_SIZE);
-    m_gradient.setColorAt(0.0, Qt::red);
-    m_gradient.setColorAt(1.0, Qt::blue);
-    painter->setBrush(m_gradient);
+    painter->setPen(OUT_CONTRE_NODE);
+    painter->setBrush(OUT_LINE_NODE);
     painter->drawEllipse(-POINT_SIZE / 2, -POINT_SIZE / 2, POINT_SIZE, POINT_SIZE);
+    painter->setPen(INSIDE_CONTRE_NODE);
+    painter->setBrush(INSIDE_LINE_NODE);
+    painter->drawEllipse(-POINT_SIZE / 2.5, -POINT_SIZE / 2.5, POINT_SIZE * 2 / 2.5, POINT_SIZE * 2 / 2.5);
 
     Q_UNUSED(option);
     Q_UNUSED(widget);

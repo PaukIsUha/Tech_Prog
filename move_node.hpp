@@ -14,6 +14,11 @@ class Edge;
 class GraphWidget;
 class QGraphicsSceneMouseEvent;
 
+#define OUT_CONTRE_NODE QColor(175, 0, 0, 255)
+#define OUT_LINE_NODE QColor(125, 0, 0, 255)
+#define INSIDE_CONTRE_NODE QColor(100, 0, 0, 255)
+#define INSIDE_LINE_NODE QColor(75, 0, 0, 255)
+
 namespace viewItem
 {
 //  class geli::Graph;

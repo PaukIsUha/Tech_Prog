@@ -80,10 +80,9 @@ MainWindow::MainWindow(QWidget *parent)
     viewItem::edge *T2edge1 = new viewItem::edge(T2node1, T2node2); // Создаём сторону между T1node1 T1node2
     viewItem::edge *T2edge2 = new viewItem::edge(T2node2, T2node3); // Создаём сторону между T1node2 T1node3
     viewItem::edge *T2edge3 = new viewItem::edge(T2node1, T2node3); // Создаём сторону между T1node1 T1node3
-    QColor clr_T2_edges(205, 92, 92, 255);
-    T2edge1->setColor(clr_T2_edges);
-    T2edge2->setColor(clr_T2_edges);
-    T2edge3->setColor(clr_T2_edges);
+    T2edge1->setColor(EDGE_COLOR_1);
+    T2edge2->setColor(EDGE_COLOR_1);
+    T2edge3->setColor(EDGE_COLOR_1);
     scene->addItem(T2edge1);
     scene->addItem(T2edge2);
     scene->addItem(T2edge3);
