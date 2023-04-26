@@ -66,6 +66,8 @@ bool linear_space::border2d::out_border(const point& p) const
 
 bool linear_space::area2d::in_area(const point& p) const
 {
+    if (borders.empty())
+        return false;
     for (const auto& border : borders)
         if (border.out_border(p))
             return false;
@@ -195,4 +197,9 @@ linear_space::point linear_space::toLSpoint(const QPointF& qt_point)
     p.x = qt_point.x();
     p.y = qt_point.y();
     return p;
+}
+
+void linear_space::area2d::clear()
+{
+    borders.clear();
 }
