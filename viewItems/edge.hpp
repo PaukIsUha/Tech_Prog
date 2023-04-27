@@ -15,6 +15,8 @@ namespace viewItem
         edge(viewItem::moveNode* _start_node, viewItem::moveNode* _finish_node);
         void setColor(const QColor& _color);
         bool intersects(const viewItem::edge* other_edge);
+        QPointF first() const;
+        QPointF second() const;
         ~edge() = default;
     
     signals:
