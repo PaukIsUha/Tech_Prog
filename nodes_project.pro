@@ -9,25 +9,25 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Geli.cpp \
-    GraphicsScene.cpp \
-    area2d_view.cpp \
-    edge.cpp \
-    grid.cpp \
-    linear_space.cpp \
+    graphicFigures/Geli.cpp \
+    graphicFigures/GraphicsScene.cpp \
+    viewItems/area2d_view.cpp \
+    viewItems/edge.cpp \
+    viewItems/grid.cpp \
+    linSpace/linear_space.cpp \
     main.cpp \
     mainwindow.cpp \
-    move_node.cpp
+    viewItems/move_node.cpp
 
 HEADERS += \
-    Geli.hpp \
-    GraphicsScene.h \
-    area2d_view.hpp \
-    edge.hpp \
-    grid.hpp \
-    linear_space.hpp \
+    graphicFigures/Geli.hpp \
+    graphicFigures/GraphicsScene.h \
+    viewItems/area2d_view.hpp \
+    viewItems/edge.hpp \
+    viewItems/grid.hpp \
+    linSpace/linear_space.hpp \
     mainwindow.h \
-    move_node.hpp
+    viewItems/move_node.hpp
 
 FORMS += \
     mainwindow.ui
