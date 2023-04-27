@@ -1,9 +1,9 @@
 
 #ifndef GELI_CPP
 #define GELI_CPP
-#include "Geli.hpp"
-#include "move_node.hpp"
-#include "edge.hpp"
+#include <graphicFigures/Geli.hpp>
+#include <viewItems/move_node.hpp>
+#include <viewItems/edge.hpp>
 #include <QDebug>
 
 QGraphicsScene* geli::Graph::scene = nullptr;
@@ -34,11 +34,11 @@ namespace geli {
         qDebug() << this->validity;
     }
 
-    void Graph::append_node(viewItem::moveNode* new_node) {
+    void Graph::push_back_node(viewItem::moveNode* new_node) {
         this->nodes.push_back(new_node);
     }
 
-    void Graph::delete_last() {
+    void Graph::pop_back_node() {
         this->nodes.pop_back();
     }
 

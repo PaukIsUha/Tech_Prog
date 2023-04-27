@@ -1,10 +1,10 @@
 #ifndef AREA2D_VIEW_HPP
 #define AREA2D_VIEW_HPP
-#include <Geli.hpp>
-#include <linear_space.hpp>
-#include <edge.hpp>
 
-//typedef std::vector<std::vector<viewItem::moveNode *>> dataNodes;
+#include <graphicFigures/Geli.hpp>
+#include <linSpace/linear_space.hpp>
+#include <viewItems/edge.hpp>
+
 
 namespace viewItem
 {

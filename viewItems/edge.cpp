@@ -1,5 +1,4 @@
-#include "edge.hpp"
-#include <QDebug>
+#include <viewItems/edge.hpp>
 
 #define DELTA 0.3
 

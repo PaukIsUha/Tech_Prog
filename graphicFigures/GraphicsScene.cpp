@@ -2,10 +2,7 @@
 #ifndef GRAPHICSVIEW_CPP
 #define GRAPHICSVIEW_CPP
 
-#include "GraphicsScene.h"
-#include "Geli.hpp"
-#include <QGraphicsView>
-#include <QDebug>
+#include <graphicFigures/GraphicsScene.h>
 
 void GraphicsScene::ScreenResize(int width, int height)
 {

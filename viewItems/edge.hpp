@@ -1,6 +1,8 @@
 #ifndef EDGE_HPP
 #define EDGE_HPP
-#include <move_node.hpp>
+
+#include <viewItems/move_node.hpp>
+#include <QDebug>
 
 #define EDGE_COLOR_1 QColor(250, 150, 150, 255)
 

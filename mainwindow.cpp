@@ -1,11 +1,5 @@
-#include "mainwindow.h"
-#include "Geli.hpp"
-#include "move_node.hpp"
-#include "GraphicsScene.h"
-#include "ui_mainwindow.h"
-#include <QtGui>
-#include <QDebug>
-#include <QApplication>
+#include <mainwindow.h>
+#include <ui_mainwindow.h>
 
 void clean_button_clicked()
 {

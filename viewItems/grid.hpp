@@ -1,7 +1,7 @@
 #ifndef GRID_HPP
 #define GRID_HPP
 
-#include <move_node.hpp>
+#include <viewItems/move_node.hpp>
 
 #define GRID_DEFAULT_COLOR QColor(128, 128, 128, 255)
 #define GRID_FREQUENCY 10

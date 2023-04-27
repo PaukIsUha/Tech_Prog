@@ -1,10 +1,4 @@
-#include "move_node.hpp"
-#include "ui_mainwindow.h"
-#include "mainwindow.h"
-#include <QCoreApplication>
-#include <QDebug>
-#include <QtGui>
-#include <iostream>
+#include <viewItems/move_node.hpp>
 
 QGraphicsScene* viewItem::moveNode::scene = nullptr;
 

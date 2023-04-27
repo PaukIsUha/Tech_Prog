@@ -1,4 +1,4 @@
-#include "area2d_view.hpp"
+#include <viewItems/area2d_view.hpp>
 
 
 QGraphicsScene* viewItem::area2d_view::scene = nullptr;
