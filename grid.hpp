@@ -13,6 +13,8 @@ namespace viewItem
     public:
         grid(QGraphicsScene *_scene, QColor _color = GRID_DEFAULT_COLOR);
         void setColor(const QColor& _color);
+
+        ~grid() = default;
     signals:
     private:
         QRectF boundingRect() const;

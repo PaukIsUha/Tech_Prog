@@ -11,6 +11,8 @@ namespace viewItem
     public:
         edge(viewItem::moveNode* _start_node, viewItem::moveNode* _finish_node);
         void setColor(const QColor& _color);
+
+        ~edge() = default;
     signals:
     private:
         QRectF boundingRect() const;
