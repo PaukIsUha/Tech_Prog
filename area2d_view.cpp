@@ -11,7 +11,7 @@ QGraphicsScene* viewItem::area2d_view::getScene() {
     return scene;
 }
 
-viewItem::area2d_view::area2d_view(const dataNodes& _figures)
+viewItem::area2d_view::area2d_view(const std::vector<geli::Graph *>& _figures)
     : figures(_figures)
 {
     setZValue(-3);
@@ -45,23 +45,24 @@ void viewItem::area2d_view::paint(QPainter *painter, const QStyleOptionGraphicsI
 
 linear_space::area2d viewItem::area2d_view::calcArea() const
 {
-//    if (figures.size() != 2)
-//        throw std::out_of_range("Not propably variant");
-//    if (figures[0].size() != 3)
-//        throw std::out_of_range("Not propably variant");
-//    if (figures[1].size() != 3)
-//        throw std::out_of_range("Not propably variant");
     std::vector<std::vector<linear_space::point>> dataPoints;
-    dataPoints.resize(figures.size());
-    for (size_t i = 0; i < dataPoints.size(); ++i)
+    //dataPoints.resize(figures.size());
+    linear_space::area2d interscetion;
+    for (size_t i = 0; i < figures.size(); ++i)
     {
-        dataPoints[i].resize(figures[i].size());
-        for (size_t j = 0; j < dataPoints[i].size(); ++j)
+        if (!figures[i]->is_valid())
         {
-            dataPoints[i][j] = linear_space::toLSpoint(figures[i][j]->pos());
+            continue;
+        }
+        dataPoints.push_back(std::vector<linear_space::point>());
+        size_t last_ind = dataPoints.size() - 1;
+        auto nodes_figures = figures[i]->get_nodes();
+        dataPoints[last_ind].resize(nodes_figures.size());
+        for (size_t j = 0; j < dataPoints[last_ind].size(); ++j)
+        {
+            dataPoints[last_ind][j] = linear_space::toLSpoint(nodes_figures[j]->pos());
         }
     }
-    linear_space::area2d interscetion;
     try
     {
         for (const auto& stack_points: dataPoints)

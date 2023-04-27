@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     viewItem::grid *Grid = new viewItem::grid(scene);
     scene->addItem(Grid);
 
-    dataNodes pps;
+    std::vector<geli::Graph *> graphs;
 
     // TRIANGLE test
     std::vector<QPointF*> tr0_points = {
@@ -71,22 +71,16 @@ MainWindow::MainWindow(QWidget *parent)
         new QPointF(700, 800),
         new QPointF(800, 800),
         new QPointF(700, 900),
-//        new QPointF(900, 900)
+        new QPointF(900, 900)
     };
-//    geli::Graph *tr2 = new geli::Graph(tr2_points);
-//    scene->addItem(tr2);
+    geli::Graph *tr2 = new geli::Graph(tr2_points);
+    scene->addItem(tr2);
 
-    pps.push_back(std::vector<viewItem::moveNode*>());
-    for (auto el : tr0->get_nodes()) {
-        pps[0].push_back(el);
-    }
+    graphs.push_back(tr0);
+    graphs.push_back(tr1);
+    graphs.push_back(tr2);
 
-    pps.push_back(std::vector<viewItem::moveNode*>());
-    for (auto el : tr1->get_nodes()) {
-        pps[1].push_back(el);
-    }
-
-    viewItem::area2d_view *area = new viewItem::area2d_view(pps);
+    viewItem::area2d_view *area = new viewItem::area2d_view(graphs);
     scene->addItem(area);
     area->setScene(scene);
 
