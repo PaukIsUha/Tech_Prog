@@ -101,3 +101,13 @@ bool viewItem::edge::intersects(const viewItem::edge* other_edge) {
         }
     }
 }
+
+QPointF viewItem::edge::first() const
+{
+    return start_node->pos();
+}
+
+QPointF viewItem::edge::second() const
+{
+    return finish_node->pos();
+}

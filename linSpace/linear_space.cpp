@@ -10,6 +10,11 @@ linear_space::area2d::area2d(std::vector<point> points)
     borders.push_back(border2d(std::make_tuple(points.front(), points.back()), cof));
 }
 
+void linear_space::area2d::push_back_border(const border2d& border)
+{
+    borders.push_back(border);
+}
+
 linear_space::border2d::border2d(std::tuple<point, point> line, const point& area_cond)
 {
     point p1 = std::get<0>(line);

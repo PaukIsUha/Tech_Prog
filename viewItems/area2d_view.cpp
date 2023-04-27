@@ -46,36 +46,36 @@ void viewItem::area2d_view::paint(QPainter *painter, const QStyleOptionGraphicsI
 linear_space::area2d viewItem::area2d_view::calcArea() const
 {
     std::vector<std::vector<linear_space::point>> dataPoints;
-    //dataPoints.resize(figures.size());
-    linear_space::area2d interscetion;
-    for (size_t i = 0; i < figures.size(); ++i)
+    linear_space::area2d intersection;
+    for (const auto& figure: figures)
     {
-        if (!figures[i]->is_valid())
+        if (!figure->is_valid())
         {
             continue;
         }
-        dataPoints.push_back(std::vector<linear_space::point>());
-        size_t last_ind = dataPoints.size() - 1;
-        auto nodes_figures = figures[i]->get_nodes();
-        dataPoints[last_ind].resize(nodes_figures.size());
-        for (size_t j = 0; j < dataPoints[last_ind].size(); ++j)
+        std::vector<linear_space::point> data_points;
+        for (const auto& qpoint: figure->get_nodes())
         {
-            dataPoints[last_ind][j] = linear_space::toLSpoint(nodes_figures[j]->pos());
+            data_points.push_back(linear_space::toLSpoint(qpoint->pos()));
         }
-    }
-    try
-    {
-        for (const auto& stack_points: dataPoints)
+        linear_space::point cof = linear_space::center_of_gravity(data_points);
+        for (const auto& side : figure->get_edges())
         {
-            interscetion &= linear_space::area2d(stack_points);
+            linear_space::point _first_ = linear_space::toLSpoint(side->first());
+            linear_space::point _second_ = linear_space::toLSpoint(side->second());
+            try
+            {
+                linear_space::border2d border(std::make_tuple(_first_, _second_), cof);
+                intersection.push_back_border(border);
+            }
+            catch (std::logic_error)
+            {
+                continue;
+            }
         }
-    }
-    catch (std::logic_error)
-    {
-        interscetion.clear();
     }
 
-    return interscetion;
+    return intersection;
 }
 
 QLinearGradient viewItem::area2d_view::getGradient() const

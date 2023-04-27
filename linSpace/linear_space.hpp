@@ -71,6 +71,7 @@ namespace linear_space
         area2d(std::vector<point> points);	// triangle area
 
         bool in_area(const point& p) const;	// point inside area
+        void push_back_border(const border2d& border);
 
         area2d operator&(const area2d& a_2d) const;	// intersection of 2 areas
         area2d& operator&=(const area2d& a_2d);
