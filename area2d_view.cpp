@@ -28,9 +28,9 @@ void viewItem::area2d_view::paint(QPainter *painter, const QStyleOptionGraphicsI
 // Draw the line itself
     painter->setPen(QPen(getGradient(), 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
     auto _area = calcArea();
-    for (size_t X = 0; X < this->scene->width(); ++X)
+    for (size_t X = 0; X < this->scene->width(); X += 2)
     {
-        for (size_t Y = 0; Y < this->scene->height(); ++Y)
+        for (size_t Y = 0; Y < this->scene->height(); Y += 2)
         {
             linear_space::point p = {real(X), real(Y)};
             if (_area.in_area(p))
@@ -77,7 +77,7 @@ linear_space::area2d viewItem::area2d_view::calcArea() const
 QLinearGradient viewItem::area2d_view::getGradient() const
 {
     QLinearGradient m_gradient(0, 0, this->scene->width(), this->scene->height());
-    m_gradient.setColorAt(0.0, Qt::black);
-    m_gradient.setColorAt(1.0, Qt::white);
+    m_gradient.setColorAt(0.0, OUT_CONTRE_NODE);
+    m_gradient.setColorAt(1.0, INSIDE_LINE_NODE);
     return m_gradient;
 }
