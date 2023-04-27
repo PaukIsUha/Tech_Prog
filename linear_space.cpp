@@ -9,7 +9,7 @@ linear_space::area2d::area2d(std::vector<point> points)
 //    borders.push_back(border2d(std::make_tuple(p1, p2), p3));
 //    borders.push_back(border2d(std::make_tuple(p1, p3), p2));
 //    borders.push_back(border2d(std::make_tuple(p2, p3), p1));
-    point cof = center_of_gravity(points);
+    point cof = sacg(points);
     for (size_t i = 1; i < points.size(); ++i)
     {
         borders.push_back(border2d(std::make_tuple(points[i], points[i - 1]), cof));

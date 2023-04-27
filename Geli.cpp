@@ -25,7 +25,7 @@ namespace geli {
             viewItem::edge *ed = new viewItem::edge(this->nodes[0],
                                                     this->nodes[this->nodes.size() - 1]);
             this->edges.push_back(ed);
-            for (int i = 0; i < this->nodes.size() - 1; ++i) {
+            for (size_t i = 0; i < this->nodes.size() - 1; ++i) {
                 ed = new viewItem::edge(this->nodes[i], this->nodes[i + 1]);
                 this->edges.push_back(ed);
             }

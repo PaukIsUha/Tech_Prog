@@ -45,12 +45,12 @@ void viewItem::area2d_view::paint(QPainter *painter, const QStyleOptionGraphicsI
 
 linear_space::area2d viewItem::area2d_view::calcArea() const
 {
-    if (figures.size() != 2)
-        throw std::out_of_range("Not propably variant");
-    if (figures[0].size() != 3)
-        throw std::out_of_range("Not propably variant");
-    if (figures[1].size() != 3)
-        throw std::out_of_range("Not propably variant");
+//    if (figures.size() != 2)
+//        throw std::out_of_range("Not propably variant");
+//    if (figures[0].size() != 3)
+//        throw std::out_of_range("Not propably variant");
+//    if (figures[1].size() != 3)
+//        throw std::out_of_range("Not propably variant");
     std::vector<std::vector<linear_space::point>> dataPoints;
     dataPoints.resize(figures.size());
     for (size_t i = 0; i < dataPoints.size(); ++i)
@@ -64,14 +64,12 @@ linear_space::area2d viewItem::area2d_view::calcArea() const
     linear_space::area2d interscetion;
     try
     {
-        for (auto stack_points: dataPoints)
+        for (const auto& stack_points: dataPoints)
         {
             interscetion &= linear_space::area2d(stack_points);
         }
-//        linear_space::area2d area1(std::make_tuple(dataPoints[0][0], dataPoints[0][1], dataPoints[0][2]));
-//        linear_space::area2d area2(std::make_tuple(dataPoints[1][0], dataPoints[1][1], dataPoints[1][2]));
-//        interscetion = area1 & area2;
-    }  catch (std::logic_error)
+    }
+    catch (std::logic_error)
     {
         interscetion.clear();
     }

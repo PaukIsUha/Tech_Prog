@@ -53,8 +53,8 @@ MainWindow::MainWindow(QWidget *parent)
         new QPointF(100, 200),
         new QPointF(200, 300),
         new QPointF(300, 300),
-//        new QPointF(300, 200),
-//        new QPointF(200, 100)
+        new QPointF(300, 200),
+        new QPointF(200, 100)
     };
     geli::Graph *tr0 = new geli::Graph(tr0_points);
     scene->addItem(tr0);
@@ -88,6 +88,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     viewItem::area2d_view *area = new viewItem::area2d_view(pps);
     scene->addItem(area);
+    area->setScene(scene);
 
     QPushButton *clean_button = new QPushButton("clean");
     clean_button->setStyleSheet(
