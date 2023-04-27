@@ -64,13 +64,18 @@ linear_space::area2d viewItem::area2d_view::calcArea() const
     linear_space::area2d interscetion;
     try
     {
-        linear_space::area2d area1(std::make_tuple(dataPoints[0][0], dataPoints[0][1], dataPoints[0][2]));
-        linear_space::area2d area2(std::make_tuple(dataPoints[1][0], dataPoints[1][1], dataPoints[1][2]));
-        interscetion = area1 & area2;
+        for (auto stack_points: dataPoints)
+        {
+            interscetion &= linear_space::area2d(stack_points);
+        }
+//        linear_space::area2d area1(std::make_tuple(dataPoints[0][0], dataPoints[0][1], dataPoints[0][2]));
+//        linear_space::area2d area2(std::make_tuple(dataPoints[1][0], dataPoints[1][1], dataPoints[1][2]));
+//        interscetion = area1 & area2;
     }  catch (std::logic_error)
     {
         interscetion.clear();
     }
+
     return interscetion;
 }
 

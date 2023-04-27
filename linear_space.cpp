@@ -1,14 +1,20 @@
 #include "linear_space.hpp"
 
-linear_space::area2d::area2d(std::tuple<point, point, point> triangle)
+linear_space::area2d::area2d(std::vector<point> points)
 {
-    point p1 = std::get<0>(triangle);
-    point p2 = std::get<1>(triangle);
-    point p3 = std::get<2>(triangle);
+//    point p1 = std::get<0>(triangle);
+//    point p2 = std::get<1>(triangle);
+//    point p3 = std::get<2>(triangle);
 
-    borders.push_back(border2d(std::make_tuple(p1, p2), p3));
-    borders.push_back(border2d(std::make_tuple(p1, p3), p2));
-    borders.push_back(border2d(std::make_tuple(p2, p3), p1));
+//    borders.push_back(border2d(std::make_tuple(p1, p2), p3));
+//    borders.push_back(border2d(std::make_tuple(p1, p3), p2));
+//    borders.push_back(border2d(std::make_tuple(p2, p3), p1));
+    point cof = center_of_gravity(points);
+    for (size_t i = 1; i < points.size(); ++i)
+    {
+        borders.push_back(border2d(std::make_tuple(points[i], points[i - 1]), cof));
+    }
+    borders.push_back(border2d(std::make_tuple(points.front(), points.back()), cof));
 }
 
 linear_space::border2d::border2d(std::tuple<point, point> line, const point& area_cond)

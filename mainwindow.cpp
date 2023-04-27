@@ -53,8 +53,8 @@ MainWindow::MainWindow(QWidget *parent)
         new QPointF(100, 200),
         new QPointF(200, 300),
         new QPointF(300, 300),
-        new QPointF(300, 200),
-        new QPointF(200, 100)
+//        new QPointF(300, 200),
+//        new QPointF(200, 100)
     };
     geli::Graph *tr0 = new geli::Graph(tr0_points);
     scene->addItem(tr0);
@@ -71,10 +71,10 @@ MainWindow::MainWindow(QWidget *parent)
         new QPointF(700, 800),
         new QPointF(800, 800),
         new QPointF(700, 900),
-        new QPointF(900, 900)
+//        new QPointF(900, 900)
     };
-    geli::Graph *tr2 = new geli::Graph(tr2_points);
-    scene->addItem(tr2);
+//    geli::Graph *tr2 = new geli::Graph(tr2_points);
+//    scene->addItem(tr2);
 
     pps.push_back(std::vector<viewItem::moveNode*>());
     for (auto el : tr0->get_nodes()) {
@@ -85,6 +85,9 @@ MainWindow::MainWindow(QWidget *parent)
     for (auto el : tr1->get_nodes()) {
         pps[1].push_back(el);
     }
+
+    viewItem::area2d_view *area = new viewItem::area2d_view(pps);
+    scene->addItem(area);
 
     QPushButton *clean_button = new QPushButton("clean");
     clean_button->setStyleSheet(

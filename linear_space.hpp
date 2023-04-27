@@ -68,7 +68,7 @@ namespace linear_space
     public:
         area2d() = default;
         area2d(const area2d& a_2d) = default;
-        area2d(std::tuple<point, point, point> triangle);	// triangle area
+        area2d(std::vector<point> points);	// triangle area
 
         bool in_area(const point& p) const;	// point inside area
 
