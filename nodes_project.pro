@@ -13,6 +13,7 @@ SOURCES += \
     GraphicsScene.cpp \
     area2d_view.cpp \
     edge.cpp \
+    grid.cpp \
     linear_space.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -23,6 +24,7 @@ HEADERS += \
     GraphicsScene.h \
     area2d_view.hpp \
     edge.hpp \
+    grid.hpp \
     linear_space.hpp \
     mainwindow.h \
     move_node.hpp

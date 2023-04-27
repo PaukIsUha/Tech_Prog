@@ -2,6 +2,8 @@
 #define EDGE_HPP
 #include <move_node.hpp>
 
+#define EDGE_COLOR_1 QColor(250, 150, 150, 255)
+
 namespace viewItem
 {
     class edge : public QObject, public QGraphicsItem
@@ -11,6 +13,8 @@ namespace viewItem
         edge(viewItem::moveNode* _start_node, viewItem::moveNode* _finish_node);
         void setColor(const QColor& _color);
         bool intersects(const viewItem::edge* other_edge);
+        ~edge() = default;
+    
     signals:
     private:
         QRectF boundingRect() const;

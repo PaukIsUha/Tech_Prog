@@ -13,6 +13,8 @@ namespace viewItem
         area2d_view(const dataNodes& _figures);
         static void setScene(QGraphicsScene *other_scene);
         static QGraphicsScene* getScene();
+
+        ~area2d_view() = default;
     signals:
     private:
         static QGraphicsScene *scene;

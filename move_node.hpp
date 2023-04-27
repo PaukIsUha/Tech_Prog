@@ -16,6 +16,11 @@ namespace geli {
     class Graph;
 }
 
+#define OUT_CONTRE_NODE QColor(175, 0, 0, 255)
+#define OUT_LINE_NODE QColor(125, 0, 0, 255)
+#define INSIDE_CONTRE_NODE QColor(100, 0, 0, 255)
+#define INSIDE_LINE_NODE QColor(75, 0, 0, 255)
+
 namespace viewItem
 {
     class moveNode : public QObject, public QGraphicsItem
@@ -25,6 +30,8 @@ namespace viewItem
         moveNode(const moveNode& new_node);
         static void setScene(QGraphicsScene *other_scene);
         static QGraphicsScene* getScene();
+
+        ~moveNode() = default;
     signals:
     private:
         static QGraphicsScene *scene;
