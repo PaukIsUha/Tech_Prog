@@ -42,7 +42,7 @@ namespace geli {
         this->nodes.pop_back();
     }
 
-    size_t Graph::get_size() const {
+    size_t Graph::size() const {
         return this->nodes.size();
     }
 
@@ -111,6 +111,11 @@ namespace geli {
         for (auto &edge : this->edges) {
             edge->setColor(_color);
         }
+    }
+
+    bool Graph::is_valid() const
+    {
+        return validity;
     }
 }
 

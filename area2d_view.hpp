@@ -1,16 +1,17 @@
 #ifndef AREA2D_VIEW_HPP
 #define AREA2D_VIEW_HPP
-#include <edge.hpp>
+#include <Geli.hpp>
 #include <linear_space.hpp>
+#include <edge.hpp>
 
-typedef std::vector<std::vector<viewItem::moveNode *>> dataNodes;
+//typedef std::vector<std::vector<viewItem::moveNode *>> dataNodes;
 
 namespace viewItem
 {
     class area2d_view: public QObject, public QGraphicsItem
     {
     public:
-        area2d_view(const dataNodes& _figures);
+        area2d_view(const std::vector<geli::Graph *>& _figures);
         static void setScene(QGraphicsScene *other_scene);
         static QGraphicsScene* getScene();
 
@@ -24,7 +25,8 @@ namespace viewItem
         linear_space::area2d calcArea() const;
         QLinearGradient getGradient() const;
     private:
-        dataNodes figures;
+        // dataNodes figures;
+        std::vector<geli::Graph *> figures;
     };
 }
 

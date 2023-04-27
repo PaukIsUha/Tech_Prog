@@ -2,13 +2,6 @@
 
 linear_space::area2d::area2d(std::vector<point> points)
 {
-//    point p1 = std::get<0>(triangle);
-//    point p2 = std::get<1>(triangle);
-//    point p3 = std::get<2>(triangle);
-
-//    borders.push_back(border2d(std::make_tuple(p1, p2), p3));
-//    borders.push_back(border2d(std::make_tuple(p1, p3), p2));
-//    borders.push_back(border2d(std::make_tuple(p2, p3), p1));
     point cof = sacg(points);
     for (size_t i = 1; i < points.size(); ++i)
     {
