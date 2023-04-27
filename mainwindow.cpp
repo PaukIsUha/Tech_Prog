@@ -32,6 +32,9 @@ MainWindow::MainWindow(QWidget *parent)
 //    ui->graphicsView->fitInView(scene->sceneRect(), Qt::KeepAspectRatio);
 
     scene->setBackgroundBrush(getGradient());
+    viewItem::grid *Grid = new viewItem::grid(scene);
+    scene->addItem(Grid);
+
     dataNodes pps;
 
     // TRIANGLE I
@@ -139,10 +142,11 @@ void MainWindow::ScreenResize(int width, int height)
     qDebug() << "Width: " << width << ", Height: " << height;
 }
 
-QLinearGradient MainWindow::getGradient() const
+QRadialGradient MainWindow::getGradient() const
 {
-    QLinearGradient m_gradient(0, 0, ui->graphicsView->geometry().width(), ui->graphicsView->geometry().height());
+    QRadialGradient m_gradient(QPointF(this->width() * 0.75, this->height() * 0.75), this->width() * 0.75);
     m_gradient.setColorAt(0.0, DARK_SIDE_BACKGROUND);
-    m_gradient.setColorAt(1.0, LIGHT_SIDE_BACKGROUND);
+    m_gradient.setColorAt(0.5, MIDDLE_SIDE_BACKGROUND);
+    m_gradient.setColorAt(1, LIGHT_SIDE_BACKGROUND);
     return m_gradient;
 }
