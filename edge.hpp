@@ -9,10 +9,12 @@ namespace viewItem
     class edge : public QObject, public QGraphicsItem
     {
     public:
+        void link(viewItem::moveNode* _start_node, viewItem::moveNode* _finish_node);
         edge(viewItem::moveNode* _start_node, viewItem::moveNode* _finish_node);
         void setColor(const QColor& _color);
-
+        bool intersects(const viewItem::edge* other_edge);
         ~edge() = default;
+    
     signals:
     private:
         QRectF boundingRect() const;

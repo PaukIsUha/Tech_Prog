@@ -32,6 +32,8 @@ signals:
 public slots:
     void ScreenResize(int width, int height);
 
+private slots:
+
 private:
     QRadialGradient getGradient() const;
 

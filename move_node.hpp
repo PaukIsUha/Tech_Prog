@@ -1,7 +1,6 @@
 #ifndef MOVE_NODE_HPP
 #define MOVE_NODE_HPP
 
-#include "Geli.hpp"
 #include <QGraphicsItem>
 #include <QList>
 #include <QGraphicsScene>
@@ -13,6 +12,9 @@
 class Edge;
 class GraphWidget;
 class QGraphicsSceneMouseEvent;
+namespace geli {
+    class Graph;
+}
 
 #define OUT_CONTRE_NODE QColor(175, 0, 0, 255)
 #define OUT_LINE_NODE QColor(125, 0, 0, 255)
@@ -21,7 +23,6 @@ class QGraphicsSceneMouseEvent;
 
 namespace viewItem
 {
-//  class geli::Graph;
     class moveNode : public QObject, public QGraphicsItem
     {
     public:
@@ -40,7 +41,7 @@ namespace viewItem
         void mousePressEvent(QGraphicsSceneMouseEvent *event);
         void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
-//      friend class geli::Graph;
+        friend class geli::Graph;
     };
 }
 
