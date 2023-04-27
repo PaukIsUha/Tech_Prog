@@ -28,8 +28,8 @@ namespace geli {
         Graph(const std::vector<QPointF*> &input);
         const std::vector<viewItem::moveNode*>& get_nodes();
         const std::vector<viewItem::edge*>& get_edges();
-        void append_node(viewItem::moveNode* new_node);
-        void delete_last();
+        void push_back_node(viewItem::moveNode* new_node);
+        void pop_back_node();
         size_t size() const;
         void clear();
         void add_subobjects_to_scene();

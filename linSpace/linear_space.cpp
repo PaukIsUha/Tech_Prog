@@ -1,4 +1,4 @@
-#include "linear_space.hpp"
+#include <linSpace/linear_space.hpp>
 
 linear_space::area2d::area2d(std::vector<point> points)
 {

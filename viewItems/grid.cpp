@@ -1,4 +1,4 @@
-#include "grid.hpp"
+#include <viewItems/grid.hpp>
 
 viewItem::grid::grid(QGraphicsScene *_scene, QColor _color)
     : color(_color) ,

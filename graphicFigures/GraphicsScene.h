@@ -3,7 +3,8 @@
 #define GRAPHICSSCENE_H
 
 #include <QGraphicsView>
-#include "Geli.hpp"
+#include <graphicFigures/Geli.hpp>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GraphicsScene; }  // Не пон что это, но у тебя было также ¯\_(ツ)_/¯

@@ -3,9 +3,14 @@
 
 #include <QMainWindow>
 #include <QPainter>
-#include <area2d_view.hpp>
-#include <grid.hpp>
-#include "GraphicsScene.h"
+#include <viewItems/area2d_view.hpp>
+#include <viewItems/grid.hpp>
+#include <graphicFigures/Geli.hpp>
+#include <viewItems/move_node.hpp>
+#include <graphicFigures/GraphicsScene.h>
+#include <QtGui>
+#include <QDebug>
+#include <QApplication>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
