@@ -54,6 +54,7 @@ void viewItem::moveNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
      * курсора внутри графического элемента
      * в координатную систему графической сцены
      * */
+    this->scene->update();
     QPointF cur_pnt = mapToScene(event->pos());
     if(cur_pnt.rx() < 0.0) {
         cur_pnt.setX(0);
@@ -67,7 +68,9 @@ void viewItem::moveNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if (cur_pnt.ry() > this->scene->height() - 3.0) {
         cur_pnt.setY(this->scene->height() - 3.0);
     }
-
+    for (auto &graph : geli::Graph::get_graphs_db()) {
+        graph->validation_check();
+    }
     this->setPos(cur_pnt);
 }
 
@@ -85,6 +88,7 @@ void viewItem::moveNode::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     /* При отпускании мышью элемента
      * заменяем на обычный курсор стрелку
      * */
+
     this->setCursor(QCursor(Qt::ArrowCursor));
     Q_UNUSED(event);
 }

@@ -30,9 +30,10 @@ signals:
 public slots:
     void ScreenResize(int width, int height);
 
+private slots:
+
 private:
     QLinearGradient getGradient() const;
-
     Ui::MainWindow *ui;
     GraphicsScene *scene;
 };
