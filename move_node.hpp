@@ -29,6 +29,8 @@ namespace viewItem
         moveNode(const moveNode& new_node);
         static void setScene(QGraphicsScene *other_scene);
         static QGraphicsScene* getScene();
+
+        ~moveNode() = default;
     signals:
     private:
         static QGraphicsScene *scene;
