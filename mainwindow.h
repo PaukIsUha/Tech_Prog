@@ -26,6 +26,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void setScene(QGraphicsScene *other_scene);
+    QGraphicsScene* getScene();
     ~MainWindow();
     
 protected:
@@ -40,6 +42,7 @@ public slots:
 private slots:
 
 private:
+    void clean_button_clicked();
     QRadialGradient getGradient() const;
 
     Ui::MainWindow *ui;

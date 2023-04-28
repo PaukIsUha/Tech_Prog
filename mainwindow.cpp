@@ -1,12 +1,22 @@
 #include <mainwindow.h>
 #include <ui_mainwindow.h>
 
-void clean_button_clicked()
+class geli::Graph;
+
+void MainWindow::clean_button_clicked()
 {
-    qDebug() << "CLICK" << geli::Graph::get_graphs_db().size();
-    for (auto &graph : geli::Graph::get_graphs_db()) {
+    std::vector<geli::Graph*> graphs;
+    qDebug() << this->scene->items().size();
+    for (auto item : this->scene->items()) {
+        if (dynamic_cast<geli::Graph*>(item)) {
+            graphs.push_back(dynamic_cast<geli::Graph*>(item));
+        }
+    }
+    for (auto graph : graphs) {
+        this->scene->removeItem(graph);
         graph->clear();
     }
+    qDebug() << this->scene->items().size();
 }
 
 
@@ -41,6 +51,19 @@ MainWindow::MainWindow(QWidget *parent)
     scene->addItem(Grid);
 
     std::vector<geli::Graph *> graphs;
+
+//    std::vector<QPointF*> tr0_points1 = {
+//        new QPointF(100, 100),
+//        new QPointF(200, 100),
+//        new QPointF(300, 100),
+//        new QPointF(300, 100),
+//        new QPointF(200, 200)
+//    };
+//    geli::Graph *tr01 = new geli::Graph(tr0_points1);
+//    qDebug() << tr01->scene();
+//    scene->addItem(tr01);
+//    tr01->clear();
+
 
     // TRIANGLE test
     std::vector<QPointF*> tr0_points = {
@@ -97,7 +120,7 @@ MainWindow::MainWindow(QWidget *parent)
             "background-color: #0D47A1;"
         "}"
     );
-    QObject::connect(clean_button, &QPushButton::clicked, clean_button_clicked);
+    QObject::connect(clean_button, &QPushButton::clicked, this, &MainWindow::clean_button_clicked);
     scene->addWidget(clean_button); // Добавление кнопки на сцену
 
 //    Область пересечения:
@@ -134,5 +157,13 @@ QRadialGradient MainWindow::getGradient() const
     m_gradient.setColorAt(0.5, MIDDLE_SIDE_BACKGROUND);
     m_gradient.setColorAt(1, LIGHT_SIDE_BACKGROUND);
     return m_gradient;
+}
+
+void MainWindow::setScene(QGraphicsScene *other_scene) {
+    this->scene = scene;
+}
+
+QGraphicsScene* MainWindow::getScene() {
+    return this->scene;
 }
 

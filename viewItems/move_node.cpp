@@ -62,9 +62,6 @@ void viewItem::moveNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if (cur_pnt.ry() > this->scene->height() - 3.0) {
         cur_pnt.setY(this->scene->height() - 3.0);
     }
-    for (auto &graph : geli::Graph::get_graphs_db()) {
-        graph->validation_check();
-    }
     this->setPos(cur_pnt);
 }
 

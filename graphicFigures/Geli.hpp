@@ -17,6 +17,7 @@ namespace viewItem {
 
 namespace geli {
     class Graph : public QObject, public QGraphicsItem {
+
         std::vector<viewItem::moveNode*> nodes;
         std::vector<viewItem::edge*> edges;
 
@@ -25,7 +26,7 @@ namespace geli {
 
         bool validity;
     public:
-        Graph();
+        Graph() = default;
         Graph(const std::vector<QPointF*> &input);
         const std::vector<viewItem::moveNode*>& get_nodes();
         const std::vector<viewItem::edge*>& get_edges();
@@ -33,7 +34,6 @@ namespace geli {
         void pop_back_node();
         size_t size() const;
         void clear();
-        static std::vector<Graph*> get_graphs_db();
         static void setScene(QGraphicsScene *other_scene);
         static QGraphicsScene* getScene();
         void validation_check();
@@ -43,6 +43,8 @@ namespace geli {
         ~Graph();
 
     private:
+        void mousePressEvent(QGraphicsSceneMouseEvent *event);
+
         bool valid_intersection() const;
         bool valid_convexity() const;
 

@@ -10,10 +10,6 @@ QGraphicsScene* geli::Graph::scene = nullptr;
 std::vector<geli::Graph*> geli::Graph::graphs_db;
 
 namespace geli {
-    Graph::Graph() {
-        graphs_db.push_back(this);
-    }
-
     Graph::Graph(const std::vector<QPointF*> &input) : Graph() {
         for (auto el : input) {
             viewItem::moveNode *node = new viewItem::moveNode();        // Создаём узел (Треугольник 2, точка 1)
@@ -48,9 +44,11 @@ namespace geli {
 
     void Graph::clear() {
         for (auto edge : this->edges) {
+            scene->removeItem(edge);
             delete edge;
         }
         for (auto node : this->nodes) {
+            scene->removeItem(node);
             delete node;
         }
         this->nodes.clear();
@@ -102,10 +100,6 @@ namespace geli {
         }
     }
 
-    std::vector<Graph*> geli::Graph::get_graphs_db() {
-        return graphs_db;
-    }
-
     void Graph::setColor(const QColor& _color) {
         for (auto &edge : this->edges) {
             edge->setColor(_color);
@@ -141,10 +135,15 @@ namespace geli {
     }
 
     void Graph::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+        validation_check();
         if (!Graph::already_on_scene) {
             Graph::add_subobjects_to_scene();
             Graph::already_on_scene = true;
         }
+    }
+
+    void Graph::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+        qDebug() << "WHAT??";
     }
 }
 
