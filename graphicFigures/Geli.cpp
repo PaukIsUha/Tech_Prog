@@ -90,17 +90,6 @@ namespace geli {
     }
 
     void Graph::validation_check() {
-//        for (auto &ed1 : this->edges) {
-//            for (auto &ed2 : this->edges) {
-//                if (ed1->intersects(ed2)) {
-//                    this->validity = false;
-//                    this->setColor(Qt::red);
-//                    return;
-//                }
-//            }
-//        }
-//        this->validity = true;
-//        this->setColor(Qt::green);
         if (!valid_intersection() || !valid_convexity())
         {
             this->validity = false;
@@ -144,6 +133,18 @@ namespace geli {
     {
         // some check convexity
         return true;
+    }
+
+    QRectF Graph::boundingRect() const
+    {
+        return QRectF(0, 0, 0, 0);
+    }
+
+    void Graph::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+        if (!Graph::already_on_scene) {
+            Graph::add_subobjects_to_scene();
+            Graph::already_on_scene = true;
+        }
     }
 }
 

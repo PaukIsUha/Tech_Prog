@@ -16,7 +16,7 @@ class GraphicsScene : public QGraphicsScene
 public:
     void addItem(QGraphicsItem* gr_obj);
 
-    void addItem(geli::Graph* gr_obj);
+//    void addItem(geli::Graph* gr_obj);
 
 public slots:
     void ScreenResize(int width, int height);

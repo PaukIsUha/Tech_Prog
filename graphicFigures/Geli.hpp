@@ -16,7 +16,7 @@ namespace viewItem {
 
 
 namespace geli {
-    class Graph {
+    class Graph : public QObject, public QGraphicsItem {
         std::vector<viewItem::moveNode*> nodes;
         std::vector<viewItem::edge*> edges;
 
@@ -33,7 +33,6 @@ namespace geli {
         void pop_back_node();
         size_t size() const;
         void clear();
-        void add_subobjects_to_scene();
         static std::vector<Graph*> get_graphs_db();
         static void setScene(QGraphicsScene *other_scene);
         static QGraphicsScene* getScene();
@@ -46,6 +45,12 @@ namespace geli {
     private:
         bool valid_intersection() const;
         bool valid_convexity() const;
+
+        void add_subobjects_to_scene();
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+        QRectF boundingRect() const;
+
+        bool already_on_scene = false;
     };
 }
 

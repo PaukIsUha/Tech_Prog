@@ -15,8 +15,8 @@ void GraphicsScene::addItem(QGraphicsItem* gr_obj) {
     QGraphicsScene::addItem(gr_obj);
 }
 
-void GraphicsScene::addItem(geli::Graph* gr_obj) {
-    gr_obj->add_subobjects_to_scene();
-}
+//void GraphicsScene::addItem(geli::Graph* gr_obj) {
+//    gr_obj->add_subobjects_to_scene();
+//}
 
 #endif // GRAPHICSVIEW_CPP
