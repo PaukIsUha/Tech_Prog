@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     graphicFigures/Geli.cpp \
     graphicFigures/GraphicsScene.cpp \
+    graphicFigures/dynamic_painter.cpp \
     viewItems/area2d_view.cpp \
     viewItems/edge.cpp \
     viewItems/grid.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
 HEADERS += \
     graphicFigures/Geli.hpp \
     graphicFigures/GraphicsScene.h \
+    graphicFigures/dynamic_painter.h \
     viewItems/area2d_view.hpp \
     viewItems/edge.hpp \
     viewItems/grid.hpp \

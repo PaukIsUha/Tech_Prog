@@ -3,8 +3,9 @@
 
 class geli::Graph;
 
-void MainWindow::add_new_graph() {
-    geli::PolyLine *pline = new geli::PolyLine(this->scene);
+void MainWindow::add_new_graph(GraphicsScene *scene) {
+    geli::PolyLine *pline = new geli::PolyLine(scene);
+    scene->setDevStatus(true);
     qDebug() << "created";
 }
 
@@ -126,7 +127,9 @@ MainWindow::MainWindow(QWidget *parent)
         "background-color: #0D47A1;"
         "}"
         );
-    QObject::connect(add_graph, &QPushButton::clicked, this, &MainWindow::add_new_graph);
+    QObject::connect(add_graph, &QPushButton::clicked, this, [=](){
+        add_new_graph(scene);
+    });
     scene->addWidget(add_graph); // Добавление кнопки на сцену
 //    Область пересечения:
 //    viewItem::area2d_view *intersection = new viewItem::area2d_view(pps);

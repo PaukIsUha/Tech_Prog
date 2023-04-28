@@ -21,7 +21,12 @@ void GraphicsScene::setDevStatus(bool status) {
 
 void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
     if (this->getDevStatus()) {
-        qDebug() << "AAAA";
+        if (event->button() == Qt::LeftButton) {
+            qDebug() << "developing";
+        } else if (event->button() == Qt::RightButton) {
+            qDebug() << "Done";
+            this->setDevStatus(false);
+        }
     } else {
         QGraphicsScene::mousePressEvent(event);
     }

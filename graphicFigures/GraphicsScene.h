@@ -23,7 +23,7 @@ public slots:
     void ScreenResize(int width, int height);
 
 protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+    void GraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event);
 
 private:
     bool developing_status = false;
