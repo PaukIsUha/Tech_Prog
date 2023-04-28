@@ -3,6 +3,7 @@
 #define GRAPHICSSCENE_H
 
 #include <QGraphicsView>
+#include <QGraphicsSceneMouseEvent>
 #include <graphicFigures/Geli.hpp>
 #include <QDebug>
 
@@ -14,12 +15,18 @@ class GraphicsScene : public QGraphicsScene
 {
     Q_OBJECT
 public:
-    void addItem(QGraphicsItem* gr_obj);
-
+    bool getDevStatus();
+    void setDevStatus(bool status);
 //    void addItem(geli::Graph* gr_obj);
 
 public slots:
     void ScreenResize(int width, int height);
+
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+
+private:
+    bool developing_status = false;
 };
 
 //public:

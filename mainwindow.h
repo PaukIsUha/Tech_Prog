@@ -26,6 +26,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void MainWindow::add_new_graph();
     void setScene(QGraphicsScene *other_scene);
     QGraphicsScene* getScene();
     ~MainWindow();

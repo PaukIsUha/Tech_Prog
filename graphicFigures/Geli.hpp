@@ -17,14 +17,16 @@ namespace viewItem {
 
 namespace geli {
     class Graph : public QObject, public QGraphicsItem {
-
+    protected:
         std::vector<viewItem::moveNode*> nodes;
         std::vector<viewItem::edge*> edges;
 
         static QGraphicsScene *scene;
-        static std::vector<Graph*> graphs_db;
 
         bool validity;
+        QRectF boundingRect() const;
+        bool valid_intersection() const;
+        bool valid_convexity() const;
     public:
         Graph() = default;
         Graph(const std::vector<QPointF*> &input);
@@ -41,18 +43,25 @@ namespace geli {
         bool is_valid() const;
 
         ~Graph();
-
     private:
-        void mousePressEvent(QGraphicsSceneMouseEvent *event);
-
-        bool valid_intersection() const;
-        bool valid_convexity() const;
 
         void add_subobjects_to_scene();
         void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-        QRectF boundingRect() const;
 
         bool already_on_scene = false;
+    };
+
+    class PolyLine : public Graph {
+//        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    private:
+        bool is_closed = false;
+        QGraphicsScene *scene;
+
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    public:
+        PolyLine(QGraphicsScene *scene);
+        void add_node(viewItem::moveNode* node);
+        void close_line();
     };
 }
 
