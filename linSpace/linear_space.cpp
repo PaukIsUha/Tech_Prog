@@ -207,3 +207,19 @@ void linear_space::area2d::clear()
 {
     borders.clear();
 }
+
+std::vector<linear_space::point> linear_space::toLSpoints(const std::vector<QPointF>& qt_points)
+{
+    std::vector<linear_space::point> lin_vec_points(qt_points.size());
+    for (size_t i = 0; i < qt_points.size(); ++i)
+        lin_vec_points[i] = toLSpoint(qt_points[i]);
+    return lin_vec_points;
+}
+
+real linear_space::sin_vector(const point& p1, const point& p2)
+{
+    point r;
+    r.x = 1;
+    r.y = -p2.x / p2.y;
+    return (p1.x * r.x + p1.y * r.y) / modulus(p1) / modulus(p2);
+}

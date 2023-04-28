@@ -9,6 +9,8 @@
 #include <QPointF>
 typedef long double real;
 
+#define PI 3.14159268
+
 namespace linear_space
 {
     struct point
@@ -29,6 +31,7 @@ namespace linear_space
     };
 
     point toLSpoint(const QPointF& qt_point);
+    std::vector<point> toLSpoints(const std::vector<QPointF>& qt_points);
     point sort_by_angle_to_center_of_gravity(std::vector<point>& points);
     #define sacg(p) sort_by_angle_to_center_of_gravity(p)
     point center_of_gravity(const std::vector<point>& points);
@@ -38,6 +41,7 @@ namespace linear_space
     real sin_to_x_axis(const point& p1);
     #define sxa(p) sin_to_x_axis(p)
     real modulus(const point& p1);
+    real sin_vector(const point& p1, const point& p2);
 
     class border2d	// border: const_y * y + const_x * x <= m_const
     {
