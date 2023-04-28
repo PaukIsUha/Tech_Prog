@@ -102,6 +102,21 @@ bool viewItem::edge::intersects(const viewItem::edge* other_edge) {
     }
 }
 
+bool viewItem::edge::operator&(const linear_space::point& point) const
+{
+    try
+    {
+        linear_space::point x1 = linear_space::toLSpoint(first());
+        linear_space::point x2 = linear_space::toLSpoint(second());
+        linear_space::border2d border(std::make_tuple(x1, x2), point);
+        return false;
+    }
+    catch(std::logic_error)
+    {
+        return true;
+    }
+}
+
 QPointF viewItem::edge::first() const
 {
     return start_node->pos();

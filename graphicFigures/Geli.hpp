@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QGraphicsItem>
 #include <vector>
+#include <linSpace/linear_space.hpp>
 
 namespace viewItem {
     class moveNode;
@@ -43,7 +44,8 @@ namespace geli {
         ~Graph();
 
     private:
-
+        bool valid_intersection() const;
+        bool valid_convexity() const;
     };
 }
 

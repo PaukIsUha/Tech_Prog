@@ -90,17 +90,27 @@ namespace geli {
     }
 
     void Graph::validation_check() {
-        for (auto &ed1 : this->edges) {
-            for (auto &ed2 : this->edges) {
-                if (ed1->intersects(ed2)) {
-                    this->validity = false;
-                    this->setColor(Qt::red);
-                    return;
-                }
-            }
+//        for (auto &ed1 : this->edges) {
+//            for (auto &ed2 : this->edges) {
+//                if (ed1->intersects(ed2)) {
+//                    this->validity = false;
+//                    this->setColor(Qt::red);
+//                    return;
+//                }
+//            }
+//        }
+//        this->validity = true;
+//        this->setColor(Qt::green);
+        if (!valid_intersection() || !valid_convexity())
+        {
+            this->validity = false;
+            this->setColor(Qt::red);
         }
-        this->validity = true;
-        this->setColor(Qt::green);
+        else
+        {
+            this->validity = true;
+            this->setColor(Qt::green);
+        }
     }
 
     std::vector<Graph*> geli::Graph::get_graphs_db() {
@@ -116,6 +126,24 @@ namespace geli {
     bool Graph::is_valid() const
     {
         return validity;
+    }
+
+    bool Graph::valid_intersection() const
+    {
+        for (auto &ed1 : this->edges) {
+            for (auto &ed2 : this->edges) {
+                if (ed1->intersects(ed2)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    bool Graph::valid_convexity() const
+    {
+        // some check convexity
+        return true;
     }
 }
 

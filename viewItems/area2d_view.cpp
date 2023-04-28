@@ -53,11 +53,7 @@ linear_space::area2d viewItem::area2d_view::calcArea() const
         {
             continue;
         }
-        std::vector<linear_space::point> data_points;
-        for (const auto& qpoint: figure->get_nodes())
-        {
-            data_points.push_back(linear_space::toLSpoint(qpoint->pos()));
-        }
+        auto data_points = linear_space::toLSpoints(viewItem::vector_pos(figure->get_nodes()));
         linear_space::point cof = linear_space::center_of_gravity(data_points);
         for (const auto& side : figure->get_edges())
         {

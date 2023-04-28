@@ -2,6 +2,7 @@
 #define EDGE_HPP
 
 #include <viewItems/move_node.hpp>
+#include <linSpace/linear_space.hpp>
 #include <QDebug>
 
 #define EDGE_COLOR_1 QColor(250, 150, 150, 255)
@@ -15,6 +16,7 @@ namespace viewItem
         edge(viewItem::moveNode* _start_node, viewItem::moveNode* _finish_node);
         void setColor(const QColor& _color);
         bool intersects(const viewItem::edge* other_edge);
+        bool operator&(const linear_space::point& point) const;
         QPointF first() const;
         QPointF second() const;
         ~edge() = default;
