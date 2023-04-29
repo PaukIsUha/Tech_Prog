@@ -14,6 +14,7 @@ namespace viewItem
         static QGraphicsScene* getScene();
         void push_back_graph(geli::Graph* graph);
 
+        void clear();
         ~area2d_view() = default;
     signals:
     private:

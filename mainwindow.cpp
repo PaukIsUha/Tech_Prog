@@ -10,13 +10,14 @@ void MainWindow::add_new_graph(GraphicsScene *scene) {
     triangle->add_node(new viewItem::moveNode(300 + slider, 50 + slider));
     triangle->add_node(new viewItem::moveNode(50 + slider, 400 + slider));
     triangle->close_line();
-//    intersect_area->push_back_graph(triangle);
+    intersect_area->push_back_graph(triangle);
     slider += SLIDE_SIZE;
     slider %= AMOUNT_OF_SLIDES * SLIDE_SIZE;
 }
 
 void MainWindow::clean_button_clicked()
 {
+    intersect_area->clear();
     for (auto item : this->scene->items()) {
         geli::Graph* graph = dynamic_cast<geli::Graph*>(item);
         if (graph) {
