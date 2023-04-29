@@ -1,10 +1,13 @@
 
-#ifndef GELI_H
-#define GELI_H
+#ifndef GRAPH_H
+#define GRAPH_H
 #include <QObject>
 #include <QGraphicsItem>
 #include <vector>
 #include <linSpace/linear_space.hpp>
+#include <viewItems/edge.hpp>
+#include <viewItems/move_node.hpp>
+
 
 namespace viewItem {
     class moveNode;
@@ -50,18 +53,6 @@ namespace geli {
 
         bool already_on_scene = false;
     };
-
-    class PolyLine : public Graph {
-    private:
-        bool is_closed = false;
-        QGraphicsScene *scene;
-
-        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    public:
-        PolyLine(QGraphicsScene *scene);
-        void add_node(viewItem::moveNode* node);
-        void close_line();
-    };
 }
 
-#endif // GELI_H
+#endif // GRAPH_H

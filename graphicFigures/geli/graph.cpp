@@ -1,10 +1,8 @@
+#ifndef GRAPH_CPP
+#define GRAPH_CPP
 
-#ifndef GELI_CPP
-#define GELI_CPP
-#include <graphicFigures/Geli.hpp>
-#include <viewItems/move_node.hpp>
-#include <viewItems/edge.hpp>
-#include <QDebug>
+#include <graphicFigures/geli/graph.hpp>
+#include <QBackingStore>
 
 QGraphicsScene* geli::Graph::scene = nullptr;
 
@@ -26,7 +24,6 @@ namespace geli {
             }
         }
         validation_check();
-        qDebug() << this->validity;
     }
 
     void Graph::push_back_node(viewItem::moveNode* new_node) {
@@ -65,9 +62,8 @@ namespace geli {
     }
 
     Graph::~Graph() {
-        for (auto &el : this->nodes) {
-            delete el;
-        }
+        this->clear();
+        this->scene->removeItem(this);
     }
 
     QGraphicsScene* Graph::getScene() {
@@ -134,49 +130,17 @@ namespace geli {
     }
 
     void Graph::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+        prepareGeometryChange();
         Q_UNUSED(option);
         Q_UNUSED(widget);
         Q_UNUSED(painter);
+
         validation_check();
         if (!Graph::already_on_scene) {
             Graph::add_subobjects_to_scene();
             Graph::already_on_scene = true;
         }
     }
-
-    PolyLine::PolyLine(QGraphicsScene *scene) {
-        this->scene = scene;
-    }
-
-    void PolyLine::add_node(viewItem::moveNode* new_node) {
-        if (this->nodes.size()) {
-            viewItem::edge *new_edge = new viewItem::edge(this->nodes.back(), new_node);
-            this->edges.push_back(new_edge);
-            this->scene->addItem(new_edge);
-        } else {
-            this->scene->addItem(this);
-        }
-        this->nodes.push_back(new_node);
-        this->scene->addItem(new_node);
-    }
-
-    void PolyLine::close_line() {
-        is_closed = true;
-        if (this->nodes.size() >= 2) {
-            viewItem::edge *new_edge = new viewItem::edge(this->nodes.back(), this->nodes[0]);
-            this->edges.push_back(new_edge);
-            this->scene->addItem(new_edge);
-        }
-    }
-
-    void PolyLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-        Q_UNUSED(option);
-        Q_UNUSED(widget);
-        Q_UNUSED(painter);
-        if (this->is_closed) {
-            this->validation_check();
-        }
-    }
 }
 
-#endif // GELI_CPP
+#endif

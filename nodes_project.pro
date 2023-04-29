@@ -9,8 +9,11 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    graphicFigures/Geli.cpp \
+    graphicFigures/geli/graph.cpp \
+    graphicFigures/geli/poly_line.cpp \
     graphicFigures/GraphicsScene.cpp \
+    graphicFigures/geli/graph.cpp \
+    graphicFigures/geli/poly_line.cpp \
     viewItems/area2d_view.cpp \
     viewItems/edge.cpp \
     viewItems/grid.cpp \
@@ -20,8 +23,11 @@ SOURCES += \
     viewItems/move_node.cpp
 
 HEADERS += \
-    graphicFigures/Geli.hpp \
+    graphicFigures/geli/graph.hpp \
+    graphicFigures/geli/poly_line.hpp \
     graphicFigures/GraphicsScene.h \
+    graphicFigures/geli/graph.hpp \
+    graphicFigures/geli/poly_line.hpp \
     viewItems/area2d_view.hpp \
     viewItems/edge.hpp \
     viewItems/grid.hpp \

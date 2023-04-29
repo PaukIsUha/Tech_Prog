@@ -1,3 +1,6 @@
+#ifndef MOVE_NODE_CPP
+#define MOVE_NODE_CPP
+
 #include <viewItems/move_node.hpp>
 
 QGraphicsScene* viewItem::moveNode::scene = nullptr;
@@ -104,3 +107,5 @@ std::vector<QPointF> viewItem::vector_pos(const std::vector<moveNode*>& m_nodes)
         qt_points[i] = m_nodes[i]->pos();
     return qt_points;
 }
+
+#endif

@@ -4,8 +4,7 @@
 
 #include <QGraphicsView>
 #include <QGraphicsSceneMouseEvent>
-#include <graphicFigures/Geli.hpp>
-#include <QDebug>
+#include <graphicFigures/geli/poly_line.hpp>
 
 class GraphicsScene : public QGraphicsScene
 {

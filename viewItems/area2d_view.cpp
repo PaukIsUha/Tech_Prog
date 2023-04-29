@@ -1,3 +1,7 @@
+#ifndef AREA2D_VIEW_CPP
+#define AREA2D_VIEW_CPP
+
+
 #include <viewItems/area2d_view.hpp>
 
 
@@ -86,3 +90,5 @@ void viewItem::area2d_view::push_back_graph(geli::Graph* graph)
 {
     figures.push_back(graph);
 }
+
+#endif

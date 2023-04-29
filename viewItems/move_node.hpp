@@ -2,16 +2,10 @@
 #define MOVE_NODE_HPP
 
 #include <QGraphicsItem>
-#include <QList>
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QStyleOption>
-#include <ui_mainwindow.h>
-#include <mainwindow.h>
 #include <QGraphicsScene>
-#include <QCoreApplication>
-#include <QDebug>
-#include <QtGui>
 #define POINT_SIZE 20
 
 class Edge;

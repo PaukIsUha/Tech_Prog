@@ -1,14 +1,12 @@
 #ifndef AREA2D_VIEW_HPP
 #define AREA2D_VIEW_HPP
 
-#include <graphicFigures/Geli.hpp>
-#include <linSpace/linear_space.hpp>
-#include <viewItems/edge.hpp>
+#include <graphicFigures/geli/poly_line.hpp>
 
 
 namespace viewItem
 {
-    class area2d_view: public QObject, public QGraphicsItem
+    class area2d_view : public QObject, public QGraphicsItem
     {
     public:
         area2d_view(const std::vector<geli::Graph *>& _figures = std::vector<geli::Graph *>());

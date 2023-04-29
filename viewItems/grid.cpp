@@ -1,3 +1,6 @@
+#ifndef GRID_CPP
+#define GRID_CPP
+
 #include <viewItems/grid.hpp>
 
 viewItem::grid::grid(QGraphicsScene *_scene, QColor _color)
@@ -42,3 +45,5 @@ void viewItem::grid::setColor(const QColor& _color)
 {
     color = _color;
 }
+
+#endif

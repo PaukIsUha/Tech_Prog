@@ -3,7 +3,6 @@
 
 #include <viewItems/move_node.hpp>
 #include <linSpace/linear_space.hpp>
-#include <QDebug>
 
 #define EDGE_COLOR_1 QColor(250, 150, 150, 255)
 
