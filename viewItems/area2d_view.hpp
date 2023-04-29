@@ -11,9 +11,10 @@ namespace viewItem
     class area2d_view: public QObject, public QGraphicsItem
     {
     public:
-        area2d_view(const std::vector<geli::Graph *>& _figures);
+        area2d_view(const std::vector<geli::Graph *>& _figures = std::vector<geli::Graph *>());
         static void setScene(QGraphicsScene *other_scene);
         static QGraphicsScene* getScene();
+        void push_back_graph(geli::Graph* graph);
 
         ~area2d_view() = default;
     signals:
@@ -25,7 +26,6 @@ namespace viewItem
         linear_space::area2d calcArea() const;
         QLinearGradient getGradient() const;
     private:
-        // dataNodes figures;
         std::vector<geli::Graph *> figures;
     };
 }

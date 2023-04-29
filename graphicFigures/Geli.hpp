@@ -52,7 +52,6 @@ namespace geli {
     };
 
     class PolyLine : public Graph {
-//        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     private:
         bool is_closed = false;
         QGraphicsScene *scene;

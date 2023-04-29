@@ -81,3 +81,8 @@ QLinearGradient viewItem::area2d_view::getGradient() const
     m_gradient.setColorAt(1.0, INSIDE_LINE_NODE);
     return m_gradient;
 }
+
+void viewItem::area2d_view::push_back_graph(geli::Graph* graph)
+{
+    figures.push_back(graph);
+}
