@@ -29,6 +29,8 @@ namespace viewItem
         viewItem::moveNode* start_node;
         viewItem::moveNode* finish_node;
         QColor color;
+
+        friend class geli::Graph;
     };
 }
 

@@ -11,7 +11,17 @@ QGraphicsScene* viewItem::moveNode::getScene() {
 }
 
 viewItem::moveNode::moveNode(const moveNode& new_node) : viewItem::moveNode::moveNode() {
-    this->scene = new_node.scene;
+    this->setPos(new_node.pos());
+}
+
+viewItem::moveNode::moveNode(const QPoint& point) : viewItem::moveNode::moveNode() {
+    this->setPos(point);
+}
+
+viewItem::moveNode::moveNode(qreal x, qreal y): viewItem::moveNode::moveNode() {
+    QPoint *point = new QPoint(x, y);
+    this->setPos(*point);
+    delete point;
 }
 
 viewItem::moveNode::moveNode()
@@ -62,9 +72,9 @@ void viewItem::moveNode::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     if (cur_pnt.ry() > this->scene->height() - 3.0) {
         cur_pnt.setY(this->scene->height() - 3.0);
     }
-    for (auto &graph : geli::Graph::get_graphs_db()) {
-        graph->validation_check();
-    }
+//    for (auto &graph : geli::Graph::get_graphs_db()) {
+//        graph->validation_check();
+//    }
     this->setPos(cur_pnt);
 }
 

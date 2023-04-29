@@ -33,6 +33,8 @@ namespace viewItem
     public:
         moveNode();
         moveNode(const moveNode& new_node);
+        moveNode(const QPoint& point);
+        moveNode(qreal x, qreal y);
         static void setScene(QGraphicsScene *other_scene);
         static QGraphicsScene* getScene();
 

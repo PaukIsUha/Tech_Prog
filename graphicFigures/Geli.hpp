@@ -16,16 +16,19 @@ namespace viewItem {
 
 
 namespace geli {
-    class Graph {
+    class Graph : public QObject, public QGraphicsItem {
+    protected:
         std::vector<viewItem::moveNode*> nodes;
         std::vector<viewItem::edge*> edges;
 
         static QGraphicsScene *scene;
-        static std::vector<Graph*> graphs_db;
 
         bool validity;
+        QRectF boundingRect() const;
+        bool valid_intersection() const;
+        bool valid_convexity() const;
     public:
-        Graph();
+        Graph() = default;
         Graph(const std::vector<QPointF*> &input);
         const std::vector<viewItem::moveNode*>& get_nodes();
         const std::vector<viewItem::edge*>& get_edges();
@@ -33,8 +36,6 @@ namespace geli {
         void pop_back_node();
         size_t size() const;
         void clear();
-        void add_subobjects_to_scene();
-        static std::vector<Graph*> get_graphs_db();
         static void setScene(QGraphicsScene *other_scene);
         static QGraphicsScene* getScene();
         void validation_check();
@@ -42,10 +43,25 @@ namespace geli {
         bool is_valid() const;
 
         ~Graph();
-
     private:
-        bool valid_intersection() const;
-        bool valid_convexity() const;
+
+        void add_subobjects_to_scene();
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
+        bool already_on_scene = false;
+    };
+
+    class PolyLine : public Graph {
+//        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    private:
+        bool is_closed = false;
+        QGraphicsScene *scene;
+
+        void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    public:
+        PolyLine(QGraphicsScene *scene);
+        void add_node(viewItem::moveNode* node);
+        void close_line();
     };
 }
 
