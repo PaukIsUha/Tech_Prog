@@ -60,47 +60,13 @@ MainWindow::MainWindow(QWidget *parent)
     scene->addItem(intersect_area);
 
     QPushButton *clean_button = new QPushButton("clean");
-    clean_button->setStyleSheet(
-        "QPushButton {"
-            "background-color: #2196F3;"
-            "color: #FFFFFF;"
-            "border: none;"
-            "padding: 8px 16px;"
-            "font-size: 16px;"
-            "border-radius: 20px;"
-        "}"
-
-        "QPushButton:hover {"
-            "background-color: #1976D2;"
-        "}"
-
-        "QPushButton:pressed {"
-            "background-color: #0D47A1;"
-        "}"
-    );
+    setDSSB(clean_button);
     QObject::connect(clean_button, &QPushButton::clicked, this, &MainWindow::clean_button_clicked);
     clean_button->move(0, 50);
     scene->addWidget(clean_button); // Добавление кнопки на сцену
 
-    QPushButton *add_graph = new QPushButton("new graph");
-    add_graph->setStyleSheet(
-        "QPushButton {"
-        "background-color: #2196F3;"
-        "color: #FFFFFF;"
-        "border: none;"
-        "padding: 8px 16px;"
-        "font-size: 16px;"
-        "border-radius: 20px;"
-        "}"
-
-        "QPushButton:hover {"
-        "background-color: #1976D2;"
-        "}"
-
-        "QPushButton:pressed {"
-        "background-color: #0D47A1;"
-        "}"
-        );
+    QPushButton *add_graph = new QPushButton("new triangle");
+    setDSSB(add_graph);
     QObject::connect(add_graph, &QPushButton::clicked, this, [=](){
         add_new_graph(scene);
     });
@@ -138,4 +104,26 @@ void MainWindow::setScene(GraphicsScene *other_scene) {
 
 QGraphicsScene* MainWindow::getScene() {
     return this->scene;
+}
+
+void setDefaultStyleSheetButton(QPushButton* button)
+{
+    button->setStyleSheet(
+                "QPushButton {"
+                "background-color: #2196F3;"
+                "color: #FFFFFF;"
+                "border: none;"
+                "padding: 8px 16px;"
+                "font-size: 16px;"
+                "border-radius: 20px;"
+                "}"
+
+                "QPushButton:hover {"
+                    "background-color: #1976D2;"
+                "}"
+
+                "QPushButton:pressed {"
+                    "background-color: #0D47A1;"
+                "}"
+            );
 }
