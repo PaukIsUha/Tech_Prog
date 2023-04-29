@@ -52,4 +52,8 @@ private:
     GraphicsScene *scene;
     viewItem::area2d_view *intersect_area;
 };
+
+void setDefaultStyleSheetButton(QPushButton* button);
+#define setDSSB(button) setDefaultStyleSheetButton(button)
+
 #endif // MAINWINDOW_H
