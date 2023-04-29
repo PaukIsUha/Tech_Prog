@@ -21,6 +21,7 @@ viewItem::moveNode::moveNode(const QPoint& point) : viewItem::moveNode::moveNode
 viewItem::moveNode::moveNode(qreal x, qreal y): viewItem::moveNode::moveNode() {
     QPoint *point = new QPoint(x, y);
     this->setPos(*point);
+    delete point;
 }
 
 viewItem::moveNode::moveNode()

@@ -6,13 +6,11 @@ class geli::Graph;
 void MainWindow::add_new_graph(GraphicsScene *scene) {
     geli::PolyLine *pline = new geli::PolyLine(scene);
     scene->setDevStatus(true);
-    qDebug() << "created";
 }
 
 void MainWindow::clean_button_clicked()
 {
     std::vector<geli::Graph*> graphs;
-    qDebug() << this->scene->items().size();
     for (auto item : this->scene->items()) {
         if (dynamic_cast<geli::Graph*>(item)) {
             graphs.push_back(dynamic_cast<geli::Graph*>(item));
@@ -22,7 +20,6 @@ void MainWindow::clean_button_clicked()
         this->scene->removeItem(graph);
         graph->clear();
     }
-    qDebug() << this->scene->items().size();
 }
 
 
@@ -153,10 +150,10 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     emit MainWindow::resized(event->size().width(), event->size().height());
 }
 
-void MainWindow::ScreenResize(int width, int height)
-{
-    qDebug() << "Width: " << width << ", Height: " << height;
-}
+//void MainWindow::ScreenResize(int width, int height)
+//{
+//    qDebug() << "Width: " << width << ", Height: " << height;
+//}
 
 QRadialGradient MainWindow::getGradient() const
 {

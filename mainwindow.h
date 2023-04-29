@@ -37,8 +37,8 @@ protected:
 signals:
     void resized(int width, int height);
 
-public slots:
-    void ScreenResize(int width, int height);
+//public slots:
+//    void ScreenResize(int width, int height);
 
 private slots:
 
