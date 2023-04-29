@@ -4,8 +4,13 @@
 class geli::Graph;
 
 void MainWindow::add_new_graph(GraphicsScene *scene) {
-    geli::PolyLine *pline = new geli::PolyLine(scene);
-    scene->setDevStatus(true);
+    geli::PolyLine *triangle = new geli::PolyLine(scene);
+    triangle->add_node(new viewItem::moveNode(400, 400));
+    triangle->add_node(new viewItem::moveNode(300, 50));
+    triangle->add_node(new viewItem::moveNode(50, 400));
+    triangle->close_line();
+
+//    scene->setDevStatus(true);
 }
 
 void MainWindow::clean_button_clicked()
@@ -55,32 +60,32 @@ MainWindow::MainWindow(QWidget *parent)
 
     std::vector<geli::Graph *> graphs;
 
-    geli::PolyLine *tr0 = new geli::PolyLine(scene);
-    tr0->add_node(new viewItem::moveNode(400, 400));
-    tr0->add_node(new viewItem::moveNode(300, 50));
-    tr0->add_node(new viewItem::moveNode(50, 400));
-    tr0->close_line();
+//    geli::PolyLine *tr0 = new geli::PolyLine(scene);
+//    tr0->add_node(new viewItem::moveNode(400, 400));
+//    tr0->add_node(new viewItem::moveNode(300, 50));
+//    tr0->add_node(new viewItem::moveNode(50, 400));
+//    tr0->close_line();
 
-    geli::PolyLine *tr1 = new geli::PolyLine(scene);
-    tr1->add_node(new viewItem::moveNode(150, 150));
-    tr1->add_node(new viewItem::moveNode(150, 500));
-    tr1->add_node(new viewItem::moveNode(600, 150));
-    tr1->close_line();
+//    geli::PolyLine *tr1 = new geli::PolyLine(scene);
+//    tr1->add_node(new viewItem::moveNode(150, 150));
+//    tr1->add_node(new viewItem::moveNode(150, 500));
+//    tr1->add_node(new viewItem::moveNode(600, 150));
+//    tr1->close_line();
 
-    geli::PolyLine *tr2 = new geli::PolyLine(scene);
-    tr2->add_node(new viewItem::moveNode(800, 800));
-    tr2->add_node(new viewItem::moveNode(800, 900));
-    tr2->add_node(new viewItem::moveNode(900, 800));
-    tr2->add_node(new viewItem::moveNode(900, 900));
-    tr2->close_line();
+//    geli::PolyLine *tr2 = new geli::PolyLine(scene);
+//    tr2->add_node(new viewItem::moveNode(800, 800));
+//    tr2->add_node(new viewItem::moveNode(800, 900));
+//    tr2->add_node(new viewItem::moveNode(900, 800));
+//    tr2->add_node(new viewItem::moveNode(900, 900));
+//    tr2->close_line();
 
-    graphs.push_back(tr0);
-    graphs.push_back(tr1);
-    graphs.push_back(tr2);
+//    graphs.push_back(tr0);
+//    graphs.push_back(tr1);
+//    graphs.push_back(tr2);
 
-    viewItem::area2d_view *area = new viewItem::area2d_view(graphs);
-    scene->addItem(area);
-    area->setScene(scene);
+//    viewItem::area2d_view *area = new viewItem::area2d_view(graphs);
+//    scene->addItem(area);
+//    area->setScene(scene);
 
     QPushButton *clean_button = new QPushButton("clean");
     clean_button->setStyleSheet(
