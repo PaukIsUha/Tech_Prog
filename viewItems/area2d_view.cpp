@@ -91,4 +91,9 @@ void viewItem::area2d_view::push_back_graph(geli::Graph* graph)
     figures.push_back(graph);
 }
 
+void viewItem::area2d_view::clear()
+{
+    figures.clear();
+}
+
 #endif

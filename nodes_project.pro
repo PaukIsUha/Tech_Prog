@@ -12,8 +12,6 @@ SOURCES += \
     graphicFigures/geli/graph.cpp \
     graphicFigures/geli/poly_line.cpp \
     graphicFigures/GraphicsScene.cpp \
-    graphicFigures/geli/graph.cpp \
-    graphicFigures/geli/poly_line.cpp \
     viewItems/area2d_view.cpp \
     viewItems/edge.cpp \
     viewItems/grid.cpp \
@@ -26,8 +24,6 @@ HEADERS += \
     graphicFigures/geli/graph.hpp \
     graphicFigures/geli/poly_line.hpp \
     graphicFigures/GraphicsScene.h \
-    graphicFigures/geli/graph.hpp \
-    graphicFigures/geli/poly_line.hpp \
     viewItems/area2d_view.hpp \
     viewItems/edge.hpp \
     viewItems/grid.hpp \

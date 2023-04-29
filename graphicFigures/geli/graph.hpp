@@ -7,16 +7,7 @@
 #include <linSpace/linear_space.hpp>
 #include <viewItems/edge.hpp>
 #include <viewItems/move_node.hpp>
-
-
-namespace viewItem {
-    class moveNode;
-}
-
-namespace viewItem {
-    class edge;
-}
-
+#include <QGraphicsScene>
 
 namespace geli {
     class Graph : public QObject, public QGraphicsItem {
