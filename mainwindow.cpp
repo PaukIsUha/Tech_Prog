@@ -1,7 +1,7 @@
 #include <mainwindow.h>
 #include <ui_mainwindow.h>
 
-class geli::Graph;
+//class geli::Graph;
 
 void MainWindow::add_new_graph(GraphicsScene *scene) {
     geli::PolyLine *triangle = new geli::PolyLine(scene);
