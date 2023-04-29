@@ -7,8 +7,7 @@ void MainWindow::add_new_graph(GraphicsScene *scene) {
     triangle->add_node(new viewItem::moveNode(300, 50));
     triangle->add_node(new viewItem::moveNode(50, 400));
     triangle->close_line();
-
-//    scene->setDevStatus(true);
+    intersect_area->push_back_graph(triangle);
 }
 
 void MainWindow::clean_button_clicked()
@@ -56,34 +55,9 @@ MainWindow::MainWindow(QWidget *parent)
     viewItem::grid *Grid = new viewItem::grid(scene);
     scene->addItem(Grid);
 
-    std::vector<geli::Graph *> graphs;
-
-//    geli::PolyLine *tr0 = new geli::PolyLine(scene);
-//    tr0->add_node(new viewItem::moveNode(400, 400));
-//    tr0->add_node(new viewItem::moveNode(300, 50));
-//    tr0->add_node(new viewItem::moveNode(50, 400));
-//    tr0->close_line();
-
-//    geli::PolyLine *tr1 = new geli::PolyLine(scene);
-//    tr1->add_node(new viewItem::moveNode(150, 150));
-//    tr1->add_node(new viewItem::moveNode(150, 500));
-//    tr1->add_node(new viewItem::moveNode(600, 150));
-//    tr1->close_line();
-
-//    geli::PolyLine *tr2 = new geli::PolyLine(scene);
-//    tr2->add_node(new viewItem::moveNode(800, 800));
-//    tr2->add_node(new viewItem::moveNode(800, 900));
-//    tr2->add_node(new viewItem::moveNode(900, 800));
-//    tr2->add_node(new viewItem::moveNode(900, 900));
-//    tr2->close_line();
-
-//    graphs.push_back(tr0);
-//    graphs.push_back(tr1);
-//    graphs.push_back(tr2);
-
-//    viewItem::area2d_view *area = new viewItem::area2d_view(graphs);
-//    scene->addItem(area);
-//    area->setScene(scene);
+    intersect_area = new viewItem::area2d_view;
+    intersect_area->setScene(scene);
+    scene->addItem(intersect_area);
 
     QPushButton *clean_button = new QPushButton("clean");
     clean_button->setStyleSheet(
@@ -130,11 +104,7 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(add_graph, &QPushButton::clicked, this, [=](){
         add_new_graph(scene);
     });
-    scene->addWidget(add_graph); // Добавление кнопки на сцену
-//    Область пересечения:
-//    viewItem::area2d_view *intersection = new viewItem::area2d_view(pps);
-//    intersection->setScene(scene);
-//    scene->addItem(intersection);
+    scene->addWidget(add_graph);
 }
 
 MainWindow::~MainWindow()
@@ -153,11 +123,6 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     emit MainWindow::resized(event->size().width(), event->size().height());
 }
 
-//void MainWindow::ScreenResize(int width, int height)
-//{
-//    qDebug() << "Width: " << width << ", Height: " << height;
-//}
-
 QRadialGradient MainWindow::getGradient() const
 {
     QRadialGradient m_gradient(QPointF(this->width() * 0.75, this->height() * 0.75), this->width() * 0.75);
@@ -167,39 +132,10 @@ QRadialGradient MainWindow::getGradient() const
     return m_gradient;
 }
 
-void MainWindow::setScene(QGraphicsScene *other_scene) {
-    this->scene = scene;
+void MainWindow::setScene(GraphicsScene *other_scene) {
+    this->scene = other_scene;
 }
 
 QGraphicsScene* MainWindow::getScene() {
     return this->scene;
 }
-
-
-//// TRIANGLE test
-//std::vector<QPointF*> tr0_points = {
-//    new QPointF(100, 200),
-//    new QPointF(200, 300),
-//    new QPointF(300, 300),
-//    new QPointF(300, 200),
-//    new QPointF(200, 100)
-//};
-//geli::Graph *tr0 = new geli::Graph(tr0_points);
-//scene->addItem(tr0);
-
-//std::vector<QPointF*> tr1_points = {
-//    new QPointF(150, 500),
-//    new QPointF(0, 0),
-//    new QPointF(500, 150)
-//};
-//geli::Graph *tr1 = new geli::Graph(tr1_points);
-//scene->addItem(tr1);
-
-//std::vector<QPointF*> tr2_points = {
-//    new QPointF(700, 800),
-//    new QPointF(800, 800),
-//    new QPointF(700, 900),
-//    new QPointF(900, 900)
-//};
-//geli::Graph *tr2 = new geli::Graph(tr2_points);
-//scene->addItem(tr2);

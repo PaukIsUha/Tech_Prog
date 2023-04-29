@@ -11,7 +11,7 @@ QGraphicsScene* geli::Graph::scene = nullptr;
 namespace geli {
     Graph::Graph(const std::vector<QPointF*> &input) : Graph() {
         for (auto el : input) {
-            viewItem::moveNode *node = new viewItem::moveNode();        // Создаём узел (Треугольник 2, точка 1)
+            viewItem::moveNode *node = new viewItem::moveNode();
             node->setPos(*el);
             this->nodes.push_back(node);
         }
@@ -134,6 +134,9 @@ namespace geli {
     }
 
     void Graph::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+        Q_UNUSED(option);
+        Q_UNUSED(widget);
+        Q_UNUSED(painter);
         validation_check();
         if (!Graph::already_on_scene) {
             Graph::add_subobjects_to_scene();
@@ -167,6 +170,9 @@ namespace geli {
     }
 
     void PolyLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+        Q_UNUSED(option);
+        Q_UNUSED(widget);
+        Q_UNUSED(painter);
         if (this->is_closed) {
             this->validation_check();
         }

@@ -3,18 +3,23 @@
 
 #include <QMainWindow>
 #include <QPainter>
-#include <viewItems/area2d_view.hpp>
 #include <viewItems/grid.hpp>
-#include <graphicFigures/Geli.hpp>
-#include <viewItems/move_node.hpp>
+//#include <graphicFigures/Geli.hpp>
+//#include <viewItems/move_node.hpp>
 #include <graphicFigures/GraphicsScene.h>
 #include <QtGui>
 #include <QDebug>
 #include <QApplication>
+#include <viewItems/area2d_view.hpp>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+namespace viewItem
+{
+    class area2d_view;
+}
 
 #define DARK_SIDE_BACKGROUND QColor(78, 78, 78, 255)
 #define MIDDLE_SIDE_BACKGROUND QColor(68, 68, 68, 255)
@@ -27,7 +32,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     void add_new_graph(GraphicsScene *scene);
-    void setScene(QGraphicsScene *other_scene);
+    void setScene(GraphicsScene *other_scene);
     QGraphicsScene* getScene();
     ~MainWindow();
     
@@ -37,9 +42,6 @@ protected:
 signals:
     void resized(int width, int height);
 
-//public slots:
-//    void ScreenResize(int width, int height);
-
 private slots:
 
 private:
@@ -48,5 +50,6 @@ private:
 
     Ui::MainWindow *ui;
     GraphicsScene *scene;
+    viewItem::area2d_view *intersect_area;
 };
 #endif // MAINWINDOW_H
