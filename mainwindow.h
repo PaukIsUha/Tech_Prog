@@ -3,13 +3,13 @@
 
 #include <QMainWindow>
 #include <QPainter>
-#include <viewItems/grid.hpp>
-//#include <graphicFigures/Geli.hpp>
-//#include <viewItems/move_node.hpp>
-#include <graphicFigures/GraphicsScene.h>
 #include <QtGui>
 #include <QDebug>
 #include <QApplication>
+#include <QPushButton>
+#include <viewItems/grid.hpp>
+#include <graphicFigures/geli/poly_line.hpp>
+#include <graphicFigures/GraphicsScene.h>
 #include <viewItems/area2d_view.hpp>
 
 QT_BEGIN_NAMESPACE
@@ -51,6 +51,7 @@ private:
     Ui::MainWindow *ui;
     GraphicsScene *scene;
     viewItem::area2d_view *intersect_area;
+
 };
 
 void setDefaultStyleSheetButton(QPushButton* button);

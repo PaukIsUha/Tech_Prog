@@ -2,25 +2,26 @@
 #include <ui_mainwindow.h>
 
 void MainWindow::add_new_graph(GraphicsScene *scene) {
+    const int SLIDE_SIZE = 10;
+    const int AMOUNT_OF_SLIDES = 18;
+    static int slider = 0;
     geli::PolyLine *triangle = new geli::PolyLine(scene);
-    triangle->add_node(new viewItem::moveNode(400, 400));
-    triangle->add_node(new viewItem::moveNode(300, 50));
-    triangle->add_node(new viewItem::moveNode(50, 400));
+    triangle->add_node(new viewItem::moveNode(400 + slider, 400 + slider));
+    triangle->add_node(new viewItem::moveNode(300 + slider, 50 + slider));
+    triangle->add_node(new viewItem::moveNode(50 + slider, 400 + slider));
     triangle->close_line();
-    intersect_area->push_back_graph(triangle);
+//    intersect_area->push_back_graph(triangle);
+    slider += SLIDE_SIZE;
+    slider %= AMOUNT_OF_SLIDES * SLIDE_SIZE;
 }
 
 void MainWindow::clean_button_clicked()
 {
-    std::vector<geli::Graph*> graphs;
     for (auto item : this->scene->items()) {
-        if (dynamic_cast<geli::Graph*>(item)) {
-            graphs.push_back(dynamic_cast<geli::Graph*>(item));
+        geli::Graph* graph = dynamic_cast<geli::Graph*>(item);
+        if (graph) {
+            graph->deleteLater();
         }
-    }
-    for (auto graph : graphs) {
-        this->scene->removeItem(graph);
-        graph->clear();
     }
 }
 
@@ -54,6 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     scene->setBackgroundBrush(getGradient());
     viewItem::grid *Grid = new viewItem::grid(scene);
     scene->addItem(Grid);
+
 
     intersect_area = new viewItem::area2d_view;
     intersect_area->setScene(scene);

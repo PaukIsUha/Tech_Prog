@@ -1,3 +1,7 @@
+#ifndef LINEAR_SPACE_CPP
+#define LINEAR_SPACE_CPP
+
+
 #include <linSpace/linear_space.hpp>
 
 linear_space::area2d::area2d(std::vector<point> points)
@@ -223,3 +227,5 @@ real linear_space::sin_vector(const point& p1, const point& p2)
     r.y = -p2.x / p2.y;
     return (p1.x * r.x + p1.y * r.y) / modulus(p1) / modulus(p2);
 }
+
+#endif

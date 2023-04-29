@@ -1,3 +1,6 @@
+#ifndef EDGE_CPP
+#define EDGE_CPP
+
 #include <viewItems/edge.hpp>
 
 #define DELTA 0.3
@@ -126,3 +129,5 @@ QPointF viewItem::edge::second() const
 {
     return finish_node->pos();
 }
+
+#endif
