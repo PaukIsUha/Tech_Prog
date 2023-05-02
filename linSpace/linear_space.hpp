@@ -41,7 +41,6 @@ namespace linear_space
     real sin_to_x_axis(const point& p1);
     #define sxa(p) sin_to_x_axis(p)
     real modulus(const point& p1);
-    real sin_vector(const point& p1, const point& p2);
 
     class border2d	// border: const_y * y + const_x * x <= m_const
     {
@@ -76,6 +75,7 @@ namespace linear_space
 
         bool in_area(const point& p) const;	// point inside area
         void push_back_border(const border2d& border);
+        void push_back_border(const std::vector<border2d>& border);
 
         area2d operator&(const area2d& a_2d) const;	// intersection of 2 areas
         area2d& operator&=(const area2d& a_2d);

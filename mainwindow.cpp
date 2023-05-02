@@ -31,10 +31,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR","1");
     ui->setupUi(this);
-
 
     scene = new GraphicsScene();   // Инициализируем графическую сцену
     scene->setItemIndexMethod(GraphicsScene::NoIndex); // настраиваем индексацию элементов

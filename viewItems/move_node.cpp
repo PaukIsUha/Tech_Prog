@@ -100,7 +100,7 @@ void viewItem::moveNode::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     Q_UNUSED(event);
 }
 
-std::vector<QPointF> viewItem::vector_pos(const std::vector<moveNode*>& m_nodes)
+std::vector<QPointF> viewItem::toVectorQpoints(const std::vector<moveNode*>& m_nodes)
 {
     std::vector<QPointF> qt_points(m_nodes.size());
     for (size_t i = 0; i < m_nodes.size(); ++i)

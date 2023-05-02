@@ -220,12 +220,12 @@ std::vector<linear_space::point> linear_space::toLSpoints(const std::vector<QPoi
     return lin_vec_points;
 }
 
-real linear_space::sin_vector(const point& p1, const point& p2)
+void linear_space::area2d::push_back_border(const std::vector<border2d>& border)
 {
-    point r;
-    r.x = 1;
-    r.y = -p2.x / p2.y;
-    return (p1.x * r.x + p1.y * r.y) / modulus(p1) / modulus(p2);
+    for (const auto& elem: border)
+    {
+        borders.push_back(elem);
+    }
 }
 
 #endif
