@@ -57,8 +57,11 @@ linear_space::area2d viewItem::area2d_view::calcArea() const
         {
             continue;
         }
-        auto data_points = linear_space::toLSpoints(viewItem::vector_pos(figure->get_nodes()));
+        auto data_points = linear_space::toLSpoints(viewItem::toVectorQpoints(figure->get_nodes()));
         linear_space::point cof = linear_space::center_of_gravity(data_points);
+
+        std::vector<linear_space::border2d> borders_figure;
+        bool valid_figure = true;
         for (const auto& side : figure->get_edges())
         {
             linear_space::point _first_ = linear_space::toLSpoint(side->first());
@@ -66,12 +69,17 @@ linear_space::area2d viewItem::area2d_view::calcArea() const
             try
             {
                 linear_space::border2d border(std::make_tuple(_first_, _second_), cof);
-                intersection.push_back_border(border);
+                borders_figure.push_back(border);
             }
             catch (std::logic_error)
             {
-                continue;
+                valid_figure = false;
+                break;
             }
+        }
+        if (valid_figure)
+        {
+            intersection.push_back_border(borders_figure);
         }
     }
 

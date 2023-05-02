@@ -45,7 +45,7 @@ namespace viewItem
         friend class geli::Graph;
     };
 
-    std::vector<QPointF> vector_pos(const std::vector<moveNode*>& m_nodes);
+    std::vector<QPointF> toVectorQpoints(const std::vector<moveNode*>& m_nodes);
 }
 
 #endif // MOVE_NODE_HPP

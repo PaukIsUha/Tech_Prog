@@ -16,11 +16,6 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-namespace viewItem
-{
-    class area2d_view;
-}
-
 #define DARK_SIDE_BACKGROUND QColor(78, 78, 78, 255)
 #define MIDDLE_SIDE_BACKGROUND QColor(68, 68, 68, 255)
 #define LIGHT_SIDE_BACKGROUND QColor(58, 58, 58, 255)
