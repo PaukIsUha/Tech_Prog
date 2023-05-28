@@ -10,14 +10,11 @@
 #include <QGraphicsScene>
 
 namespace geli {
-    class Graph : public QObject, public QGraphicsItem {   
+    class Graph : public QObject, public QGraphicsItem {
     public:
-        Graph() = default;
         Graph(const std::vector<QPointF*> &input);
         const std::vector<viewItem::moveNode*>& get_nodes();
         const std::vector<viewItem::edge*>& get_edges();
-        void push_back_node(viewItem::moveNode* new_node);
-        void pop_back_node();
         size_t size() const;
         void clear();
         static void setScene(QGraphicsScene *other_scene);
@@ -28,6 +25,7 @@ namespace geli {
 
         ~Graph();
     protected:
+        Graph() = default;
         std::vector<viewItem::moveNode*> nodes;
         std::vector<viewItem::edge*> edges;
         bool validity;

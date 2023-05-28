@@ -26,14 +26,6 @@ namespace geli {
         validation_check();
     }
 
-    void Graph::push_back_node(viewItem::moveNode* new_node) {
-        this->nodes.push_back(new_node);
-    }
-
-    void Graph::pop_back_node() {
-        this->nodes.pop_back();
-    }
-
     size_t Graph::size() const {
         return this->nodes.size();
     }
