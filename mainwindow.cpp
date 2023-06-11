@@ -26,6 +26,22 @@ void MainWindow::clean_button_clicked()
     }
 }
 
+void MainWindow::add_button_clicked()
+{
+    size_t n = __count_angle__->value();
+    double step = 2 * PI / n;
+    geli::PolyLine *figure = new geli::PolyLine(scene);
+    for (size_t i = 0; i < n; ++i)
+    {
+        size_t X_coord = R_FIGURE * cos(i * step);
+        size_t Y_coord = R_FIGURE * sin(i * step);
+        figure->add_node(new viewItem::moveNode(X_coord + COG_X + slizer, Y_coord + COG_Y + slizer));
+    }
+    figure->close_line();
+    intersect_area->push_back_graph(figure);
+    slizer += 10;
+    slizer %= 200;
+}
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -65,6 +81,18 @@ MainWindow::MainWindow(QWidget *parent)
     QObject::connect(clean_button, &QPushButton::clicked, this, &MainWindow::clean_button_clicked);
     clean_button->move(0, 50);
     scene->addWidget(clean_button); // Добавление кнопки на сцену
+
+    __count_angle__ = new QSpinBox;
+    __count_angle__->setGeometry(0, 100, 40, 40);
+    __count_angle__->setMinimum(3);
+    __count_angle__->setMaximum(99);
+    scene->addWidget(__count_angle__);
+
+    QPushButton *add_graph0 = new QPushButton("Add figure");
+    setDSSB(add_graph0);
+    QObject::connect(add_graph0, &QPushButton::clicked, this, &MainWindow::add_button_clicked);
+    add_graph0->move(40, 100);
+    scene->addWidget(add_graph0);
 
     QPushButton *add_graph = new QPushButton("new triangle");
     setDSSB(add_graph);
