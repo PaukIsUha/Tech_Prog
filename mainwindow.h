@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QApplication>
 #include <QPushButton>
+#include <QSpinBox>
 #include <viewItems/grid.hpp>
 #include <graphicFigures/geli/poly_line.hpp>
 #include <graphicFigures/GraphicsScene.h>
@@ -19,6 +20,9 @@ QT_END_NAMESPACE
 #define DARK_SIDE_BACKGROUND QColor(78, 78, 78, 255)
 #define MIDDLE_SIDE_BACKGROUND QColor(68, 68, 68, 255)
 #define LIGHT_SIDE_BACKGROUND QColor(58, 58, 58, 255)
+#define COG_X 250
+#define COG_Y 283
+#define R_FIGURE 150
 
 class MainWindow : public QMainWindow
 {
@@ -41,11 +45,14 @@ private slots:
 
 private:
     void clean_button_clicked();
+    void add_button_clicked();
     QRadialGradient getGradient() const;
 
+    size_t slizer = 0;
     Ui::MainWindow *ui;
     GraphicsScene *scene;
     viewItem::area2d_view *intersect_area;
+    QSpinBox *__count_angle__;
 
 };
 
