@@ -84,6 +84,9 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete intersect_area;
+    delete scene;
+    delete __count_angle__;
 }
 
 void MainWindow::paintEvent(QPaintEvent *event)
