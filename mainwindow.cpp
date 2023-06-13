@@ -106,7 +106,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete intersect_area;
-    delete scene;
     delete __count_angle__;
 }
 
