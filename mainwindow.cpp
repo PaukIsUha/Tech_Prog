@@ -1,20 +1,6 @@
 #include <mainwindow.h>
 #include <ui_mainwindow.h>
 
-void MainWindow::add_new_graph(GraphicsScene *scene) {
-    const int SLIDE_SIZE = 10;
-    const int AMOUNT_OF_SLIDES = 18;
-    static int slider = 0;
-    geli::PolyLine *triangle = new geli::PolyLine(scene);
-    triangle->add_node(new viewItem::moveNode(400 + slider, 400 + slider));
-    triangle->add_node(new viewItem::moveNode(300 + slider, 50 + slider));
-    triangle->add_node(new viewItem::moveNode(50 + slider, 400 + slider));
-    triangle->close_line();
-    intersect_area->push_back_graph(triangle);
-    slider += SLIDE_SIZE;
-    slider %= AMOUNT_OF_SLIDES * SLIDE_SIZE;
-}
-
 void MainWindow::clean_button_clicked()
 {
     intersect_area->clear();
@@ -83,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent)
     scene->addWidget(clean_button); // Добавление кнопки на сцену
 
     __count_angle__ = new QSpinBox;
-    __count_angle__->setGeometry(0, 100, 40, 40);
+    __count_angle__->setGeometry(0, 4, 40, 40);
     __count_angle__->setMinimum(3);
     __count_angle__->setMaximum(99);
     scene->addWidget(__count_angle__);
@@ -91,15 +77,8 @@ MainWindow::MainWindow(QWidget *parent)
     QPushButton *add_graph0 = new QPushButton("Add figure");
     setDSSB(add_graph0);
     QObject::connect(add_graph0, &QPushButton::clicked, this, &MainWindow::add_button_clicked);
-    add_graph0->move(40, 100);
+    add_graph0->move(40, 5);
     scene->addWidget(add_graph0);
-
-    QPushButton *add_graph = new QPushButton("new triangle");
-    setDSSB(add_graph);
-    QObject::connect(add_graph, &QPushButton::clicked, this, [=](){
-        add_new_graph(scene);
-    });
-    scene->addWidget(add_graph);
 }
 
 MainWindow::~MainWindow()
