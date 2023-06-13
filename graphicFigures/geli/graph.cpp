@@ -31,13 +31,13 @@ namespace geli {
     }
 
     void Graph::clear() {
-        for (auto edge : this->edges) {
-            scene->removeItem(edge);
-            delete edge;
+        for (size_t i = 0; i < this->edges.size(); ++i) {
+            scene->removeItem(this->edges[i]);
+            delete this->edges[i];
         }
-        for (auto node : this->nodes) {
-            scene->removeItem(node);
-            delete node;
+        for (size_t i = 0; i < this->nodes.size(); ++i) {
+            scene->removeItem(this->nodes[i]);
+            delete this->nodes[i];
         }
         this->nodes.clear();
         this->edges.clear();

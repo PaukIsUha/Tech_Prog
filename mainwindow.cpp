@@ -71,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent)
     __count_angle__ = new QSpinBox;
     __count_angle__->setGeometry(0, 4, 40, 40);
     __count_angle__->setMinimum(3);
-    __count_angle__->setMaximum(99);
+    __count_angle__->setMaximum(55);
     scene->addWidget(__count_angle__);
 
     QPushButton *add_graph0 = new QPushButton("Add figure");
