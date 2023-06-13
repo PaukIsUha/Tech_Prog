@@ -41,6 +41,7 @@ namespace linear_space
     real sin_to_x_axis(const point& p1);
     #define sxa(p) sin_to_x_axis(p)
     real modulus(const point& p1);
+    bool is_convex(const std::vector<point>& points);
 
     class border2d	// border: const_y * y + const_x * x <= m_const
     {

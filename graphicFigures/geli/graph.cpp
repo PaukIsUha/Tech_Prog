@@ -112,8 +112,11 @@ namespace geli {
 
     bool Graph::valid_convexity() const
     {
-        // some check convexity
-        return true;
+        try {
+            return linear_space::is_convex(linear_space::toLSpoints(viewItem::toVectorQpoints(this->nodes)));
+        } catch (std::logic_error) {
+            return false;
+        }
     }
 
     QRectF Graph::boundingRect() const

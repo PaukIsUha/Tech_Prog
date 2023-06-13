@@ -121,6 +121,25 @@ linear_space::point linear_space::sort_by_angle_to_center_of_gravity(std::vector
     return cof;
 }
 
+bool linear_space::is_convex(const std::vector<point>& points) {
+    if (points.size() <= 2) {
+        return true;
+    }
+
+    point gravity_center = center_of_gravity(points);
+
+    std::size_t n = points.size();
+    for (std::size_t i = 0; i < n; ++i) {
+        // i % n берётся для замыкания алгоритма. Связь точек в конце списка и в начале.
+        linear_space::border2d brd(std::make_tuple(points[(i + 1) % n], points[(i + 2) % n]), points[(i + 3) % n]);
+        if (!brd.in_border(points[i % n])) {
+            return false;
+        };
+    }
+
+    return true;
+}
+
 bool linear_space::comparator_by_angle(const point& p1, const point& p2)
 {
     real _cos1 = cxa(p1);
